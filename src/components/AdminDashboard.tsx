@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
-import { Users, BookOpen, BarChart3, Plus, Edit2, Trash2, ShieldCheck, Search, Eye, X, Save, Sparkles, UserPlus, AlertTriangle } from 'lucide-react';
+import { Users, BookOpen, BarChart3, Plus, Edit2, Trash2, ShieldCheck, Search, Eye, X, Save, Sparkles, UserPlus, AlertTriangle, RotateCcw } from 'lucide-react';
 import { Workbook, QuestionType, Section, Question } from '../types';
+import { INITIAL_WORKBOOKS } from '../data/initialData';
 
 export const AdminDashboard: React.FC = () => {
   const {
@@ -509,15 +510,35 @@ export const AdminDashboard: React.FC = () => {
       {/* TAB 3: WORKBOOK MANAGEMENT */}
       {activeTab === 'workbooks' && (
         <div className="space-y-6">
-          <div className="flex justify-between items-center">
-            <h3 className="text-base font-bold text-slate-900">Daftar Booklet Workbook</h3>
-            <button
-              onClick={handleCreateNewWorkbook}
-              className="btn-charcoal px-4 py-2.5 text-xs font-bold shadow-xs flex items-center gap-1.5"
-            >
-              <Plus className="w-4 h-4" />
-              <span>Tambah Workbook Baru</span>
-            </button>
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+            <div>
+              <h3 className="text-base font-bold text-slate-900">Daftar Booklet Workbook</h3>
+              <p className="text-xs text-slate-500">Kelola kurikulum pertanyaan dan gambar ilustrasi booklet refleksi.</p>
+            </div>
+            <div className="flex items-center gap-2 flex-wrap">
+              <button
+                type="button"
+                onClick={() => {
+                  if (window.confirm('Sinkronkan dan muat ulang "My Unsaid Journal" ke 50 pertanyaan & gambar resmi terbaru?')) {
+                    INITIAL_WORKBOOKS.forEach(initWb => saveWorkbook(initWb));
+                    window.location.reload();
+                  }
+                }}
+                className="px-3.5 py-2 text-xs font-bold text-slate-800 bg-amber-50 hover:bg-amber-100 border border-amber-300 rounded-xl shadow-2xs flex items-center gap-1.5 transition-colors"
+                title="Sinkronkan & Reset Data ke 50 Soal & Gambar Asli"
+              >
+                <RotateCcw className="w-3.5 h-3.5 text-amber-700" />
+                <span>Sinkronkan 50 Soal & Gambar Asli</span>
+              </button>
+
+              <button
+                onClick={handleCreateNewWorkbook}
+                className="btn-charcoal px-4 py-2 text-xs font-bold shadow-xs flex items-center gap-1.5"
+              >
+                <Plus className="w-4 h-4" />
+                <span>Tambah Workbook Baru</span>
+              </button>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -1050,14 +1071,29 @@ export const AdminDashboard: React.FC = () => {
                                   }
 
                                   return (
-                                    <div key={question.id} className="p-4 rounded-2xl bg-[#faf9f6] border border-slate-200 space-y-2 shadow-2xs">
-                                      <div className="flex items-start justify-between gap-2">
-                                        <p className="text-xs font-bold text-slate-900 leading-snug">
-                                          <span className="text-slate-400 mr-1">Soal {question.orderIndex}:</span> {question.questionText}
-                                        </p>
-                                        <span className="text-[9px] font-extrabold px-2 py-0.5 rounded bg-slate-100 text-slate-600 border border-slate-200 shrink-0 uppercase">
-                                          {question.type.replace('_', ' ')}
-                                        </span>
+                                    <div key={question.id} className="p-4 rounded-2xl bg-[#faf9f6] border border-slate-200 space-y-3 shadow-2xs">
+                                      <div className="flex items-start gap-3">
+                                        {question.imageUrl && (
+                                          <img
+                                            src={question.imageUrl}
+                                            alt="Ilustrasi"
+                                            className="w-14 h-14 object-contain rounded-xl border border-slate-300 bg-white shrink-0 p-0.5 shadow-2xs"
+                                            onError={(e) => { (e.currentTarget as HTMLElement).style.display = 'none'; }}
+                                          />
+                                        )}
+                                        <div className="flex-1 min-w-0">
+                                          <div className="flex items-start justify-between gap-2">
+                                            <p className="text-xs font-bold text-slate-900 leading-snug">
+                                              <span className="text-slate-400 mr-1">Soal {question.orderIndex}:</span> {question.questionText}
+                                            </p>
+                                            <span className="text-[9px] font-extrabold px-2 py-0.5 rounded bg-slate-100 text-slate-600 border border-slate-200 shrink-0 uppercase">
+                                              {question.type.replace('_', ' ')}
+                                            </span>
+                                          </div>
+                                          {question.helperText && (
+                                            <p className="text-[11px] text-slate-500 font-handwriting mt-0.5">{question.helperText}</p>
+                                          )}
+                                        </div>
                                       </div>
 
                                       <div className="bg-white p-3 rounded-xl border border-slate-200 space-y-1">
@@ -1207,19 +1243,40 @@ export const AdminDashboard: React.FC = () => {
                               />
                             </div>
 
-                            <div className="flex items-center gap-2 text-[11px]">
-                              <label className="text-slate-400 shrink-0">URL Visual Ilustrasi:</label>
-                              <input
-                                type="text"
-                                placeholder="Contoh: /assets/teen_bullying_reflection.png atau URL gambar (https://...)"
-                                value={q.imageUrl || ''}
-                                onChange={(e) => {
-                                  const updatedSecs = [...editingWorkbook.sections];
-                                  updatedSecs[sIdx].questions[qIdx].imageUrl = e.target.value;
-                                  setEditingWorkbook({ ...editingWorkbook, sections: updatedSecs });
-                                }}
-                                className="text-[11px] bg-slate-50 border border-slate-300 rounded px-2 py-1 w-full text-slate-700 focus:bg-white focus:outline-none"
-                              />
+                            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 text-[11px]">
+                              <label className="text-slate-500 shrink-0 font-bold">Ilustrasi (01-50):</label>
+                              <div className="flex items-center gap-2 w-full">
+                                <select
+                                  value={q.imageUrl || ''}
+                                  onChange={(e) => {
+                                    const updatedSecs = [...editingWorkbook.sections];
+                                    updatedSecs[sIdx].questions[qIdx].imageUrl = e.target.value;
+                                    setEditingWorkbook({ ...editingWorkbook, sections: updatedSecs });
+                                  }}
+                                  className="text-xs bg-slate-50 border border-slate-300 rounded-lg px-2.5 py-1 text-slate-800 font-bold focus:outline-none focus:border-slate-800 shrink-0"
+                                >
+                                  <option value="">-- Pilih Ilustrasi 01 - 50 --</option>
+                                  {Array.from({ length: 50 }, (_, i) => {
+                                    const numStr = String(i + 1).padStart(2, '0');
+                                    return (
+                                      <option key={numStr} value={`/assets/${numStr}.png`}>
+                                        Gambar #{numStr} (/assets/{numStr}.png)
+                                      </option>
+                                    );
+                                  })}
+                                </select>
+                                <input
+                                  type="text"
+                                  placeholder="Atau masukkan URL kustom..."
+                                  value={q.imageUrl || ''}
+                                  onChange={(e) => {
+                                    const updatedSecs = [...editingWorkbook.sections];
+                                    updatedSecs[sIdx].questions[qIdx].imageUrl = e.target.value;
+                                    setEditingWorkbook({ ...editingWorkbook, sections: updatedSecs });
+                                  }}
+                                  className="text-[11px] bg-slate-50 border border-slate-300 rounded-lg px-2.5 py-1 w-full text-slate-700 focus:bg-white focus:outline-none font-mono"
+                                />
+                              </div>
                             </div>
 
                             {/* LIVE IMAGE PREVIEW IN EDITOR */}

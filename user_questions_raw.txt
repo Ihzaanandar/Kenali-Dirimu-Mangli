@@ -1,0 +1,287 @@
+<USER_REQUEST>
+jadi saya ingin melakukan perubahan terhadapt websitenya dengan tampilan yang saya berikan di gambar dan berikut untuk penjelasannya. apakah bisa? konfirmasi ulang dulu agar otak kita saling memahami dan sepandang. berikut fiturnya dan pertanyaanya nanti
+
+ Judul Cover: My Unsaid Journal
+
+“A journal for everything you never got to say.”
+Jurnal untuk semua hal yang belum pernah kamu katakan.
+
+Isi fitur jurnal 
+
+🌱 01  AKU
+
+1. Sebutkan tiga kata yang dapat menggambarkan dirimu?
+2. Apa hal yang paling kamu suka dari dirimu?
+3. Apa hal kecil yang bisa membuatmu senang?
+4. Kapan terakhir kali kamu merasa bangga pada dirimu sendiri?
+5. Menurutmu, apa yang membuat dirimu berbeda dari orang lain?
+
+☁️ 02  TENTANG PERASAANKU
+6. Akhir-akhir ini, apa yang paling sering kamu rasakan?
+7. Apa yang biasanya kamu lakukan saat sedang sedih?
+8. Apa yang paling mudah membuatmu bahagia?
+9. Kapan kamu merasa paling tenang?
+10. Hal apa yang akhir-akhir ini sering menggangu pikiranmu?
+
+🧸 03  MASA KECILKU
+11. Kenangan masa kecil apa yang paling kamu ingat?
+12. Pengalaman menyedihkan apa yang pernah kamu alami saat kecil?
+13. Apa yang paling kamu rindukan dari masa kecilmu?
+14. Kalau bisa bertemu dirimu yang masih kecil, apa yang ingin kamu katakan?
+15.  Pengalaman apa yang pernah kamu lewati dan membuatmu menjadi lebih kuat saat ini?
+
+🌧️ 04 YANG KUSIMPAN SENDIRI
+16. Hal apa yang selama ini ingin kamu ceritakan, tapi belum pernah kamu ceritakan?
+17. Bagaimana perasaanmu yang sebenarnya kamu rasakan saat bilang, “Aku nggak apa-apa”?
+18. Permasalahan apa yang paling sering kamu pikirkan sebelum tidur?
+19. Apa yang paling kamu takutkan saat ini?
+20. Kalau hari ini kamu bisa jujur tentang satu hal, apa yang ingin kamu katakan?
+
+🪞 05  SAAT AKU MERASA KURANG
+21. Sebutkan hal yang paling sering membuatmu merasa kurang?
+22. Dalam hal apa kamu paling sering membandingkan dirimu dengan orang lain?
+23. Pernah merasa tidak cukup baik? Kapan?
+24. Apa yang paling sering kamu khawatirkan tentang dirimu?
+25. Sebutkan kurangan yang masih sulit kamu terima dari dirimu sendiri?
+
+🤍 06  BELAJAR MENYAYANGI DIRI
+
+26. Apa yang ingin kamu maafkan dari dirimu sendiri?
+27. Kalau sahabatmu sedang mengalami masalah yang sama denganmu, apa yang akan kamu katakan kepadanya?
+28. Apa yang sebenarnya ingin kamu dengar ketika sedang merasa sedih?
+29. Kalau bisa mengatakan satu hal baik kepada dirimu sendiri, apa yang ingin kamu katakan?
+30. Menurutmu, apa yang membuat seseorang tetap berharga meskipun punya banyak kekurangan?
+
+🌟 07  TERNYATA AKU PUNYA
+31. Apa yang kamu rasa paling kamu kuasai?
+32. Apa yang sering orang lain puji dari dirimu?
+33. Hal apa yang bisa kamu lakukan dengan baik meskipun menurutmu sederhana?
+34. Sebutkan tiga hal yang pernah kamu lakukan dan membuatmu berkata, “Ternyata aku bisa”?
+35. Kalau diberi kesempatan untuk mengembangkan satu kemampuan, apa yang ingin kamu pilih?
+
+🫂 08  ORANG-ORANG DI HIDUPKU
+36. Siapa orang yang membuatmu merasa nyaman menjadi dirimu sendiri?
+37. Siapa orang yang paling sering ada untukmu saat kamu sedang susah?
+38. Apa hal kecil dari seseorang yang pernah membuatmu merasa sangat dihargai?
+39. Apa arti keluarga bagimu?
+40. Menurutmu, seperti apa teman yang benar-benar baik?
+
+🌈 09  BAHAGIA & MIMPIKU
+41. Apa arti bahagia menurutmu?
+42. Kapan terakhir kali kamu merasa benar-benar bahagia?
+43. Kehidupan seperti apa yang sebenarnya kamu inginkan?
+44. Kalau tidak ada yang bisa menghakimi atau menertawakanmu, apa yang ingin kamu lakukan?
+45. Apa satu mimpi yang masih ingin kamu kejar?
+
+🌻 10  AKU YANG AKAN DATANG
+46. Apa yang ingin kamu ubah mulai dari sekarang?
+47. Apa yang ingin kamu pertahankan dari dirimu sampai nanti?
+48. Kalau bisa bertemu dirimu di masa depan, apa yang ingin kamu tanyakan?
+49. Kalau hidupmu punya satu kalimat untuk menggambarkan perjalananmu sampai hari ini, apa kalimatnya?
+50 Apa yang selama ini ingin kamu katakan, tetapi belum pernah kamu katakan kepada siapa pun?
+
+Fitur ◔ PROGRES 
+PERJALANANKU
+Pelan-pelan, kamu sedang mengenal dirimu sendiri.
+Visualnya bisa berupa jalan kecil hitam-putih dengan 10 titik pemberhentian. Setiap titik adalah satu bagian dari jurnal. Titik yang sudah selesai bisa berubah menjadi bunga/tanaman kecil yang tumbuh. 🌱
+________________________________________
+🌱 01 — AKU
+5 pertanyaan
+Mengenal siapa dirimu dan hal-hal kecil yang membuatmu menjadi dirimu.
+0/5 selesai
+________________________________________
+☁️ 02 — TENTANG PERASAANKU
+5 pertanyaan
+Mengenali apa yang sedang kamu rasakan dan apa yang membuat hatimu tenang.
+0/5 selesai
+________________________________________
+🧸 03 — MASA KECILKU
+5 pertanyaan
+Mengunjungi kembali cerita dan pengalaman yang pernah membentuk dirimu.
+0/5 selesai
+________________________________________
+🌧️ 04 — YANG KUSIMPAN SENDIRI
+5 pertanyaan
+Memberi ruang untuk cerita yang selama ini mungkin belum sempat kamu ceritakan.
+0/5 selesai
+________________________________________
+🪞 05 — SAAT AKU MERASA KURANG
+5 pertanyaan
+Mengenali hal-hal yang membuatmu meragukan diri sendiri dan belajar melihatnya dengan lebih lembut.
+0/5 selesai
+________________________________________
+🤍 06 — BELAJAR MENYAYANGI DIRI
+5 pertanyaan
+Belajar melihat dirimu dengan lebih baik, termasuk menerima kekurangan yang kamu punya.
+0/5 selesai
+________________________________________
+🌟 07 — TERNYATA AKU PUNYA
+5 pertanyaan
+Menemukan kemampuan, kekuatan, dan hal-hal baik yang mungkin selama ini tidak kamu sadari.
+0/5 selesai
+________________________________________
+🫂 08 — ORANG-ORANG DI HIDUPKU
+5 pertanyaan
+Mengingat orang-orang yang pernah hadir, membantu, dan membuatmu merasa berarti.
+0/5 selesai
+________________________________________
+🌈 09 — BAHAGIA & MIMPIKU
+5 pertanyaan
+Mengenali arti bahagia dan membayangkan kehidupan yang ingin kamu jalani.
+0/5 selesai
+________________________________________
+🌻 10 — AKU YANG AKAN DATANG
+5 pertanyaan
+Melihat ke depan dan mengenal dirimu yang ingin kamu tumbuhkan.
+0/5 selesai
+________________________________________
+🌳 BAGIAN TENGAH HALAMAN
+Daripada progress bar biasa, tampilkan:
+PERJALANANMU
+0 / 50 pertanyaan
+Setiap cerita yang kamu tulis adalah satu langkah kecil untuk mengenal dirimu sendiri.
+Lalu ilustrasi jalan yang melewati 10 titik:
+🌱 → ☁️ → 🧸 → 🌧️ → 🪞 → 🤍 → 🌟 → 🫂 → 🌈 → 🌻
+Ketika pengguna menyelesaikan satu bagian, misalnya 01 — Aku, titiknya menjadi:
+✓ 🌱 AKU
+dan muncul tulisan kecil:
+“Satu langkah sudah kamu lewati.”
+________________________________________
+✨ KETIKA SEMUA SELESAI
+Jangan tulis:
+❌ 100% Complete
+Lebih bagus:
+🌻 Kamu sudah sampai di akhir perjalanan.
+50 / 50 pertanyaan selesai
+Kamu sudah meluangkan waktu untuk mendengarkan dirimu sendiri—tentang hal yang membuatmu bahagia, hal yang pernah menyakitimu, hal yang kamu takutkan, orang-orang yang berarti, sampai mimpi yang ingin kamu kejar.
+Lalu:
+Tapi mengenal diri sendiri tidak berhenti di sini.
+Kamu akan terus berubah, tumbuh, belajar, dan menemukan sisi lain dari dirimu.
+“Sampai jumpa di cerita berikutnya.”
+[ KEMBALI KE JURNAL ]
+________________________________________
+🖤 Yang menurutku paling menarik untuk desainnya
+Karena kamu ingin website hitam-putih dengan ilustrasi seperti referensi, progresnya bisa dibuat seperti sebuah perjalanan visual.
+Misalnya:
+START
+🌱
+AKU
+│
+│
+☁️
+PERASAANKU
+│
+│
+🧸
+MASA KECILKU
+│
+│
+🌧️
+YANG KUSIMPAN
+│
+│
+🪞
+SAAT AKU MERASA KURANG
+│
+│
+🤍
+MENYAYANGI DIRI
+│
+│
+🌟
+TERNYATA AKU PUNYA
+│
+│
+🫂
+ORANG-ORANG DI HIDUPKU
+│
+│
+🌈
+BAHAGIA & MIMPIKU
+│
+│
+🌻
+AKU YANG AKAN DATANG
+FINISH
+Jadi ketika baru mengerjakan 5 pertanyaan, pengguna melihat dirinya baru berada di titik pertama. Setelah selesai 10 pertanyaan, sudah sampai titik kedua, dan seterusnya.
+
+________________________________________
+Bisa ditambahkan “Jejak Perasaanku”
+Setiap selesai journaling, pengguna boleh memilih:
+Hari ini aku merasa...
+😄 Bahagia
+😌 Tenang
+🥰 Bersyukur
+😔 Sedih
+😟 Cemas
+😡 Marah
+😐 Biasa saja
+🤍 Campur aduk
+Lalu di halaman Perjalananku, muncul gambaran sederhana:
+Perasaan yang paling sering kamu pilih
+😌 Tenang — 8 kali
+😄 Bahagia — 6 kali
+😔 Sedih — 4 kali
+😟 Cemas — 2 kali
+________________________________________
+4. ♙ PROFIL — “Tentang Diriku”
+TENTANG DIRIKU
+Nama panggilan:
+________________________________________
+Aku paling nyaman ketika:
+________________________________________
+Hal kecil yang membuatku bahagia:
+________________________________________
+Hal yang sedang ingin aku pelajari:
+________________________________________
+Satu hal yang ingin aku ubah:
+________________________________________
+Satu hal yang ingin aku pertahankan:
+________________________________________
+Lalu ada bagian keren:
+SURAT UNTUK DIRIKU
+Pengguna bisa menulis surat pendek:
+“Untuk diriku di masa depan...”
+Misalnya:
+“Semoga nanti aku sudah tidak terlalu takut dengan apa yang orang lain pikirkan tentangku.”
+Kemudian ada tombol:
+________________________________________
+5. ⓘ TENTANG  “Kenali My Unsaid Journal”
+Ini bagian yang menjelaskan proker KKN-nya, tetapi jangan terlalu formal.
+Bagian atas:
+Tentang My Unsaid Journal
+“Some thoughts need a place to land.”
+“Beberapa pikiran hanya membutuhkan tempat untuk dituangkan.”
+Apa itu My Unsaid Journal?
+My Unsaid Journal adalah ruang journaling digital yang dirancang untuk membantu remaja menuangkan pikiran, perasaan, pengalaman, dan harapan melalui pertanyaan-pertanyaan reflektif.
+Kemudian:
+Mengapa dibuat?
+Kadang kita punya banyak hal di kepala, tetapi bingung harus bercerita kepada siapa.
+Di sini, kamu tidak perlu punya jawaban yang sempurna.
+Cukup jujur pada dirimu sendiri.
+________________________________________
+Apa yang bisa kamu lakukan di sini?
+📖 Menulis
+Menuangkan cerita melalui pertanyaan reflektif.
+♡ Menyimpan
+Menyimpan pertanyaan dan tulisan yang bermakna.
+◔ Melihat Perjalanan
+Melihat proses journaling dan refleksi diri.
+💭 Mengenal Diri
+Mengenali pikiran dan perasaan melalui tulisan.
+
+
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-08-14T08:25:18+07:00.
+
+The user's current state is as follows:
+Active Document: d:\Downloads\Psikolog website\MANUAL_BOOK_ADMIN.md (LANGUAGE_MARKDOWN)
+Cursor is on line: 1
+Other open documents:
+- d:\Downloads\Psikolog website\tsconfig.json (LANGUAGE_UNSPECIFIED)
+- d:\Downloads\Psikolog website\package.json (LANGUAGE_JSON)
+- d:\Downloads\Psikolog website\MANUAL_BOOK_ADMIN.md (LANGUAGE_MARKDOWN)
+- d:\Downloads\Psikolog website\postcss.config.js (LANGUAGE_JAVASCRIPT)
+- d:\Downloads\Psikolog website\vite.config.ts (LANGUAGE_TYPESCRIPT)
+</ADDITIONAL_METADATA>

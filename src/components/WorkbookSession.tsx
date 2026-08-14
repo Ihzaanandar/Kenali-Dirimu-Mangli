@@ -280,10 +280,13 @@ export const WorkbookSession: React.FC = () => {
             {/* Masking Tape Strips Top Edge */}
             <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-28 h-6 tape-strip rounded-sm transform -rotate-1 pointer-events-none" />
 
-            {/* Section Tag */}
-            <div className="text-center pt-2">
+            {/* Section & Question Tag */}
+            <div className="text-center pt-2 flex items-center justify-center gap-2">
               <span className="px-3 py-1 rounded-full bg-slate-100 text-slate-800 text-xs font-bold font-handwriting border border-slate-300">
                 {currentSection?.icon || '🌱'} {currentSection?.title}
+              </span>
+              <span className="px-2.5 py-1 rounded-full bg-slate-900 text-white text-xs font-bold font-handwriting shadow-2xs">
+                Soal #{String(globalQuestionIndex).padStart(2, '0')}
               </span>
             </div>
 
@@ -301,6 +304,11 @@ export const WorkbookSession: React.FC = () => {
             <div className="rounded-2xl overflow-hidden bg-slate-50 border border-slate-200 p-2 shadow-inner group relative">
               <img
                 src={sketchIllustration}
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  const padNum = String(globalQuestionIndex).padStart(2, '0');
+                  target.src = `/assets/${padNum}.png`;
+                }}
                 alt={currentQuestion?.questionText}
                 className="w-full h-52 sm:h-60 object-contain rounded-xl transform group-hover:scale-102 transition-transform duration-500"
               />
