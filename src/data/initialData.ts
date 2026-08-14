@@ -6,9 +6,9 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
     title: 'My Unsaid Journal',
     subtitle: 'A journal for everything you never got to say.',
     description: 'Jurnal interaktif untuk semua hal yang belum pernah kamu katakan. Ruang aman untuk mendengar dirimu sendiri.',
-    coverImageUrl: '/assets/journal_50/q_01.png',
+    coverImageUrl: '/assets/01.png',
     status: 'published',
-    version: '3.0',
+    version: '4.0',
     createdBy: 'Tim Psikolog Kenali Dirimu & KKN',
     createdAt: new Date().toISOString(),
     sections: [
@@ -26,7 +26,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'short_text',
             questionText: 'Sebutkan tiga kata yang dapat menggambarkan dirimu?',
             helperText: 'Tuliskan 3 kata pertama yang terlintas di pikiranmu.',
-            imageUrl: '/assets/journal_50/q_01.png',
+            imageUrl: '/assets/01.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 1
@@ -37,7 +37,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'long_text',
             questionText: 'Apa hal yang paling kamu suka dari dirimu?',
             helperText: 'Bisa tentang sifatmu, caramu berpikir, atau keunikanmu.',
-            imageUrl: '/assets/journal_50/q_02.png',
+            imageUrl: '/assets/02.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 2
@@ -48,7 +48,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'short_text',
             questionText: 'Apa hal kecil yang bisa membuatmu senang?',
             helperText: 'Misalnya: harum hujan, senyum teman, atau lagu favorit.',
-            imageUrl: '/assets/journal_50/q_03.png',
+            imageUrl: '/assets/03.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 3
@@ -59,7 +59,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'long_text',
             questionText: 'Kapan terakhir kali kamu merasa bangga pada dirimu sendiri?',
             helperText: 'Ceritakan momen kecil ketika kamu berhasil melewati hal sulit.',
-            imageUrl: '/assets/journal_50/q_04.png',
+            imageUrl: '/assets/04.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 4
@@ -70,7 +70,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'long_text',
             questionText: 'Menurutmu, apa yang membuat dirimu berbeda dari orang lain?',
             helperText: 'Setiap jiwa punya keistimewaan tersendiri.',
-            imageUrl: '/assets/journal_50/q_05.png',
+            imageUrl: '/assets/05.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 5
@@ -91,7 +91,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'emoji_selector',
             questionText: 'Akhir-akhir ini, apa yang paling sering kamu rasakan?',
             helperText: 'Pilih emosi yang paling menggambarkan perasaanmu.',
-            imageUrl: '/assets/journal_50/q_06.png',
+            imageUrl: '/assets/06.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 1,
@@ -112,7 +112,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'long_text',
             questionText: 'Apa yang biasanya kamu lakukan saat sedang sedih?',
             helperText: 'Bagaimana caramu merawat diri ketika hatimu sedang tidak baik-baik saja?',
-            imageUrl: '/assets/journal_50/q_07.png',
+            imageUrl: '/assets/07.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 2
@@ -123,7 +123,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'long_text',
             questionText: 'Apa yang paling mudah membuatmu bahagia?',
             helperText: 'Hal-hal sederhana yang selalu membawa senyum di wajahmu.',
-            imageUrl: '/assets/journal_50/q_08.png',
+            imageUrl: '/assets/08.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 3
@@ -134,7 +134,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'long_text',
             questionText: 'Kapan kamu merasa paling tenang?',
             helperText: 'Tempat, suasana, atau momen yang membuat jiwamu damai.',
-            imageUrl: '/assets/journal_50/q_09.png',
+            imageUrl: '/assets/09.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 4
@@ -145,7 +145,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'long_text',
             questionText: 'Hal apa yang akhir-akhir ini sering mengganggu pikiranmu?',
             helperText: 'Keluarkan beban pikiranmu di sini secara jujur.',
-            imageUrl: '/assets/journal_50/q_10.png',
+            imageUrl: '/assets/10.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 5
@@ -166,7 +166,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'long_text',
             questionText: 'Kenangan masa kecil apa yang paling kamu ingat?',
             helperText: 'Momen manis, permainan, atau hangatnya masa lalu.',
-            imageUrl: '/assets/journal_50/q_11.png',
+            imageUrl: '/assets/11.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 1
@@ -177,7 +177,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'long_text',
             questionText: 'Pengalaman menyedihkan apa yang pernah kamu alami saat kecil?',
             helperText: 'Cerita yang mungkin pernah melukai hatimu waktu dulu.',
-            imageUrl: '/assets/journal_50/q_12.png',
+            imageUrl: '/assets/12.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 2
@@ -188,7 +188,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'long_text',
             questionText: 'Apa yang paling kamu rindukan dari masa kecilmu?',
             helperText: 'Kepolosan, kebebasan, atau tawa tanpa beban.',
-            imageUrl: '/assets/journal_50/q_13.png',
+            imageUrl: '/assets/13.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 3
@@ -199,7 +199,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'long_text',
             questionText: 'Kalau bisa bertemu dirimu yang masih kecil, apa yang ingin kamu katakan?',
             helperText: 'Peluk dirimu yang dulu dan berikan pesan hangat.',
-            imageUrl: '/assets/journal_50/q_14.png',
+            imageUrl: '/assets/14.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 4
@@ -210,7 +210,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'long_text',
             questionText: 'Pengalaman apa yang pernah kamu lewati dan membuatmu menjadi lebih kuat saat ini?',
             helperText: 'Badai masa lalu yang membentuk ketangguhanmu hari ini.',
-            imageUrl: '/assets/journal_50/q_15.png',
+            imageUrl: '/assets/15.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 5
@@ -231,7 +231,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'long_text',
             questionText: 'Hal apa yang selama ini ingin kamu ceritakan, tapi belum pernah kamu ceritakan?',
             helperText: 'Rahasia atau cerita tersimpan yang butuh tempat bermuara.',
-            imageUrl: '/assets/journal_50/q_16.png',
+            imageUrl: '/assets/16.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 1
@@ -242,7 +242,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'long_text',
             questionText: 'Bagaimana perasaanmu yang sebenarnya kamu rasakan saat bilang, “Aku nggak apa-apa”?',
             helperText: 'Di balik kata "gapapa", apa yang sebenarnya menjerit di dalam dada?',
-            imageUrl: '/assets/journal_50/q_17.png',
+            imageUrl: '/assets/17.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 2
@@ -253,7 +253,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'long_text',
             questionText: 'Permasalahan apa yang paling sering kamu pikirkan sebelum tidur?',
             helperText: 'Pikiran-pikiran malam yang suka menari di kepalamu.',
-            imageUrl: '/assets/journal_50/q_18.png',
+            imageUrl: '/assets/18.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 3
@@ -264,7 +264,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'long_text',
             questionText: 'Apa yang paling kamu takutkan saat ini?',
             helperText: 'Ketakutan akan masa depan, kehilangan, atau kegagalan.',
-            imageUrl: '/assets/journal_50/q_19.png',
+            imageUrl: '/assets/19.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 4
@@ -275,7 +275,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'long_text',
             questionText: 'Kalau hari ini kamu bisa jujur tentang satu hal, apa yang ingin kamu katakan?',
             helperText: 'Ruang aman untuk melepas semua topeng.',
-            imageUrl: '/assets/journal_50/q_20.png',
+            imageUrl: '/assets/20.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 5
@@ -296,7 +296,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'long_text',
             questionText: 'Sebutkan hal yang paling sering membuatmu merasa kurang?',
             helperText: 'Saat standar orang lain terasa menghimpitmu.',
-            imageUrl: '/assets/journal_50/q_21.png',
+            imageUrl: '/assets/21.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 1
@@ -307,7 +307,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'long_text',
             questionText: 'Dalam hal apa kamu paling sering membandingkan dirimu dengan orang lain?',
             helperText: 'Prestasi, penampilan, atau kehidupan sosial.',
-            imageUrl: '/assets/journal_50/q_22.png',
+            imageUrl: '/assets/22.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 2
@@ -318,7 +318,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'long_text',
             questionText: 'Pernah merasa tidak cukup baik? Kapan?',
             helperText: 'Ceritakan momen ketika kamu merasa usaha terbaikmu seperti tidak dihargai.',
-            imageUrl: '/assets/journal_50/q_23.png',
+            imageUrl: '/assets/23.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 3
@@ -329,7 +329,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'long_text',
             questionText: 'Apa yang paling sering kamu khawatirkan tentang dirimu?',
             helperText: 'Suara-suara ragu di dalam kepala.',
-            imageUrl: '/assets/journal_50/q_24.png',
+            imageUrl: '/assets/24.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 4
@@ -340,7 +340,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'long_text',
             questionText: 'Sebutkan kekurangan yang masih sulit kamu terima dari dirimu sendiri?',
             helperText: 'Pelan-pelan belajar mengenali dan menerimanya.',
-            imageUrl: '/assets/journal_50/q_25.png',
+            imageUrl: '/assets/25.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 5
@@ -361,7 +361,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'long_text',
             questionText: 'Apa yang ingin kamu maafkan dari dirimu sendiri?',
             helperText: 'Lepaskan penyesalan masa lalu dan maafkan dirimu.',
-            imageUrl: '/assets/journal_50/q_26.png',
+            imageUrl: '/assets/26.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 1
@@ -372,7 +372,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'long_text',
             questionText: 'Kalau sahabatmu sedang mengalami masalah yang sama denganmu, apa yang akan kamu katakan kepadanya?',
             helperText: 'Katakan kata-kata bijak dan ramah itu juga untuk dirimu sendiri.',
-            imageUrl: '/assets/journal_50/q_27.png',
+            imageUrl: '/assets/27.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 2
@@ -383,7 +383,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'long_text',
             questionText: 'Apa yang sebenarnya ingin kamu dengar ketika sedang merasa sedih?',
             helperText: 'Kata-kata penenang yang paling kamu harapkan.',
-            imageUrl: '/assets/journal_50/q_28.png',
+            imageUrl: '/assets/28.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 3
@@ -394,7 +394,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'long_text',
             questionText: 'Kalau bisa mengatakan satu hal baik kepada dirimu sendiri, apa yang ingin kamu katakan?',
             helperText: 'Pujian paling tulus dari dasar hatimu.',
-            imageUrl: '/assets/journal_50/q_29.png',
+            imageUrl: '/assets/29.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 4
@@ -405,7 +405,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'long_text',
             questionText: 'Menurutmu, apa yang membuat seseorang tetap berharga meskipun punya banyak kekurangan?',
             helperText: 'Nilai kebaikan sejati seorang manusia.',
-            imageUrl: '/assets/journal_50/q_30.png',
+            imageUrl: '/assets/30.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 5
@@ -426,7 +426,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'short_text',
             questionText: 'Apa yang kamu rasa paling kamu kuasai?',
             helperText: 'Bisa hobi, bakat, ketelitian, atau sifat pendengar yang baik.',
-            imageUrl: '/assets/journal_50/q_31.png',
+            imageUrl: '/assets/31.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 1
@@ -437,7 +437,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'long_text',
             questionText: 'Apa yang sering orang lain puji dari dirimu?',
             helperText: 'Pujian positif yang pernah kamu terima.',
-            imageUrl: '/assets/journal_50/q_32.png',
+            imageUrl: '/assets/32.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 2
@@ -448,7 +448,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'long_text',
             questionText: 'Hal apa yang bisa kamu lakukan dengan baik meskipun menurutmu sederhana?',
             helperText: 'Keahlian kecil yang berguna untuk orang di sekitarmu.',
-            imageUrl: '/assets/journal_50/q_33.png',
+            imageUrl: '/assets/33.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 3
@@ -459,7 +459,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'long_text',
             questionText: 'Sebutkan tiga hal yang pernah kamu lakukan dan membuatmu berkata, “Ternyata aku bisa”?',
             helperText: 'Pencapaian hebat yang awalnya terasa mustahil.',
-            imageUrl: '/assets/journal_50/q_34.png',
+            imageUrl: '/assets/34.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 4
@@ -470,7 +470,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'long_text',
             questionText: 'Kalau diberi kesempatan untuk mengembangkan satu kemampuan, apa yang ingin kamu pilih?',
             helperText: 'Impian dan keterampilan baru yang ingin diasah.',
-            imageUrl: '/assets/journal_50/q_35.png',
+            imageUrl: '/assets/35.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 5
@@ -491,7 +491,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'short_text',
             questionText: 'Siapa orang yang membuatmu merasa nyaman menjadi dirimu sendiri?',
             helperText: 'Orang yang menerima semua kekonyolan dan ketulusanmu.',
-            imageUrl: '/assets/journal_50/q_36.png',
+            imageUrl: '/assets/36.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 1
@@ -502,7 +502,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'short_text',
             questionText: 'Siapa orang yang paling sering ada untukmu saat kamu sedang susah?',
             helperText: 'Sosok pendukung paling setia dalam hidupmu.',
-            imageUrl: '/assets/journal_50/q_37.png',
+            imageUrl: '/assets/37.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 2
@@ -513,7 +513,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'long_text',
             questionText: 'Apa hal kecil dari seseorang yang pernah membuatmu merasa sangat dihargai?',
             helperText: 'Tindakan sederhana yang menghangatkan hatimu.',
-            imageUrl: '/assets/journal_50/q_38.png',
+            imageUrl: '/assets/38.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 3
@@ -524,7 +524,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'long_text',
             questionText: 'Apa arti keluarga bagimu?',
             helperText: 'Rumah, tempat pulang, atau orang-orang tersayang.',
-            imageUrl: '/assets/journal_50/q_39.png',
+            imageUrl: '/assets/39.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 4
@@ -535,7 +535,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'long_text',
             questionText: 'Menurutmu, seperti apa teman yang benar-benar baik?',
             helperText: 'Kriteria sahabat sejati dalam hidupmu.',
-            imageUrl: '/assets/journal_50/q_40.png',
+            imageUrl: '/assets/40.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 5
@@ -556,7 +556,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'long_text',
             questionText: 'Apa arti bahagia menurutmu?',
             helperText: 'Definisi kedamaian dan kebahagiaan versi hatimu.',
-            imageUrl: '/assets/journal_50/q_41.png',
+            imageUrl: '/assets/41.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 1
@@ -567,7 +567,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'long_text',
             questionText: 'Kapan terakhir kali kamu merasa benar-benar bahagia?',
             helperText: 'Ceritakan momen ketika hatimu dipenuhi rasa syukur gembira.',
-            imageUrl: '/assets/journal_50/q_42.png',
+            imageUrl: '/assets/42.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 2
@@ -578,7 +578,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'long_text',
             questionText: 'Kehidupan seperti apa yang sebenarnya kamu inginkan?',
             helperText: 'Gambaran masa depan ideal yang kamu cita-citakan.',
-            imageUrl: '/assets/journal_50/q_43.png',
+            imageUrl: '/assets/43.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 3
@@ -589,7 +589,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'long_text',
             questionText: 'Kalau tidak ada yang bisa menghakimi atau menertawakanmu, apa yang ingin kamu lakukan?',
             helperText: 'Ekspresikan kebebasan impian terbesarmu.',
-            imageUrl: '/assets/journal_50/q_44.png',
+            imageUrl: '/assets/44.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 4
@@ -600,7 +600,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'long_text',
             questionText: 'Apa satu mimpi yang masih ingin kamu kejar?',
             helperText: 'Cita-cita indah yang membakar semangatmu.',
-            imageUrl: '/assets/journal_50/q_45.png',
+            imageUrl: '/assets/45.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 5
@@ -621,7 +621,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'long_text',
             questionText: 'Apa yang ingin kamu ubah mulai dari sekarang?',
             helperText: 'Langkah perubahan positif kecil untuk hidupmu.',
-            imageUrl: '/assets/journal_50/q_46.png',
+            imageUrl: '/assets/46.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 1
@@ -632,7 +632,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'long_text',
             questionText: 'Apa yang ingin kamu pertahankan dari dirimu sampai nanti?',
             helperText: 'Kebaikan dan karakter positif yang akan selalu kamu jaga.',
-            imageUrl: '/assets/journal_50/q_47.png',
+            imageUrl: '/assets/47.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 2
@@ -643,7 +643,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'long_text',
             questionText: 'Kalau bisa bertemu dirimu di masa depan, apa yang ingin kamu tanyakan?',
             helperText: 'Pertanyaan penasaran untuk dirimu 10 tahun dari sekarang.',
-            imageUrl: '/assets/journal_50/q_48.png',
+            imageUrl: '/assets/48.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 3
@@ -654,7 +654,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'long_text',
             questionText: 'Kalau hidupmu punya satu kalimat untuk menggambarkan perjalananmu sampai hari ini, apa kalimatnya?',
             helperText: 'Kutipan hidup paling bermakna untukmu.',
-            imageUrl: '/assets/journal_50/q_49.png',
+            imageUrl: '/assets/49.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 4
@@ -665,7 +665,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'long_text',
             questionText: 'Apa yang selama ini ingin kamu katakan, tetapi belum pernah kamu katakan kepada siapa pun?',
             helperText: 'Penutup jujur dari lubuk hatimu di jurnal ini.',
-            imageUrl: '/assets/journal_50/q_50.png',
+            imageUrl: '/assets/50.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 5
@@ -679,7 +679,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
     title: 'Kenali Diriku & Perasaanku',
     subtitle: 'Modul refleksi karakter diri & ekspresi emosi.',
     description: 'Workbook tambahan untuk membantu remaja mengenali emosi harian, mengatasi cemas, dan mengekspresikan harapan.',
-    coverImageUrl: '/assets/journal_50/q_02.png',
+    coverImageUrl: '/assets/02.png',
     status: 'published',
     version: '1.0',
     createdBy: 'Tim Psikolog Kenali Dirimu',
@@ -699,7 +699,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             type: 'short_text',
             questionText: 'Bagaimana kamu menggambarkan dirimu dalam tiga kata?',
             helperText: 'Contoh: Ramah, Pemikir, Pembelajar.',
-            imageUrl: '/assets/journal_50/q_01.png',
+            imageUrl: '/assets/01.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 1
@@ -709,7 +709,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             sectionId: 'sec-2-1',
             type: 'long_text',
             questionText: 'Apa hal yang paling kamu sukai dari caramu menyelesaikan masalah?',
-            imageUrl: '/assets/journal_50/q_02.png',
+            imageUrl: '/assets/02.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 2
@@ -729,7 +729,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             sectionId: 'sec-2-2',
             type: 'emoji_selector',
             questionText: 'Bagaimana perasaanmu saat memikirkan tugas atau ujian sekolah?',
-            imageUrl: '/assets/journal_50/q_10.png',
+            imageUrl: '/assets/10.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 1,
@@ -745,7 +745,7 @@ export const INITIAL_WORKBOOKS: Workbook[] = [
             sectionId: 'sec-2-2',
             type: 'long_text',
             questionText: 'Apa hal paling sederhana yang bisa membantumu lebih rileks?',
-            imageUrl: '/assets/journal_50/q_09.png',
+            imageUrl: '/assets/09.png',
             themeStyle: 'pencil_sketch',
             required: true,
             orderIndex: 2
