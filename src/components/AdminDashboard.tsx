@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
-import { Users, BookOpen, BarChart3, Plus, Edit2, Trash2, ShieldCheck, Search, Eye, X, Save, Sparkles, UserPlus, AlertTriangle, RotateCcw } from 'lucide-react';
+import { Users, BookOpen, BarChart3, Plus, Edit2, Trash2, ShieldCheck, Search, Eye, X, Save, Sparkles, UserPlus, AlertTriangle, RotateCcw, Upload, Link as LinkIcon, Image as ImageIcon } from 'lucide-react';
 import { Workbook, QuestionType, Section, Question } from '../types';
 import { INITIAL_WORKBOOKS } from '../data/initialData';
 
@@ -44,8 +44,24 @@ export const AdminDashboard: React.FC = () => {
   // Delete Student Modal State
   const [deletingStudent, setDeletingStudent] = useState<{ id: string; displayName: string } | null>(null);
 
-  // Workbook Editor Modal State
   const [editingWorkbook, setEditingWorkbook] = useState<Workbook | null>(null);
+
+  // Helper to handle local file upload to Base64 data URL
+  const handleImageFileUpload = (file: File, callback: (url: string) => void) => {
+    if (!file) return;
+    if (!file.type.startsWith('image/')) {
+      alert('Silakan pilih berkas gambar (JPG, PNG, WEBP, GIF, SVG).');
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const result = e.target?.result as string;
+      if (result) {
+        callback(result);
+      }
+    };
+    reader.readAsDataURL(file);
+  };
 
   // Filter students
   const studentUsers = allUsers.filter(u => u.role === 'student' &&
@@ -1201,6 +1217,96 @@ export const AdminDashboard: React.FC = () => {
                       />
                     </div>
                   </div>
+
+                  {/* COVER IMAGE DUAL OPTION (UPLOAD & LINK) */}
+                  <div className="p-3.5 bg-[#fcfbf9] rounded-2xl border border-slate-200 space-y-2.5">
+                    <div className="flex items-center justify-between">
+                      <label className="text-xs font-extrabold text-slate-900 flex items-center gap-1.5">
+                        <ImageIcon className="w-3.5 h-3.5 text-slate-700" />
+                        <span>Gambar Sampul / Cover Workbook</span>
+                      </label>
+                      {editingWorkbook.coverImageUrl && (
+                        <button
+                          type="button"
+                          onClick={() => setEditingWorkbook({ ...editingWorkbook, coverImageUrl: '' })}
+                          className="text-[10px] font-bold text-rose-600 hover:text-rose-800"
+                        >
+                          Hapus Sampul
+                        </button>
+                      )}
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      {/* OPSI 1: UPLOAD DARI FILE LOKAL */}
+                      <label className="flex items-center justify-center gap-2 p-2.5 bg-white hover:bg-slate-50 border border-dashed border-slate-300 rounded-xl cursor-pointer text-slate-700 transition-colors shadow-2xs">
+                        <Upload className="w-4 h-4 text-slate-600" />
+                        <span className="text-xs font-bold font-handwriting">1. Upload Foto Sampul</span>
+                        <input
+                          type="file"
+                          accept="image/*"
+                          className="hidden"
+                          onChange={(e) => {
+                            const file = e.target.files?.[0];
+                            if (file) {
+                              handleImageFileUpload(file, (dataUrl) => {
+                                setEditingWorkbook({ ...editingWorkbook, coverImageUrl: dataUrl });
+                              });
+                            }
+                          }}
+                        />
+                      </label>
+
+                      {/* OPSI 2: PILIH DARI PRESET */}
+                      <select
+                        value={editingWorkbook.coverImageUrl?.startsWith('/assets/') ? editingWorkbook.coverImageUrl : ''}
+                        onChange={(e) => {
+                          if (e.target.value) {
+                            setEditingWorkbook({ ...editingWorkbook, coverImageUrl: e.target.value });
+                          }
+                        }}
+                        className="text-xs bg-white border border-slate-300 rounded-xl px-2.5 py-2 text-slate-800 font-bold focus:outline-none focus:border-slate-800 w-full"
+                      >
+                        <option value="">2. Pilih Preset (01 - 50)</option>
+                        {Array.from({ length: 50 }, (_, i) => {
+                          const numStr = String(i + 1).padStart(2, '0');
+                          return (
+                            <option key={numStr} value={`/assets/${numStr}.png`}>
+                              Sampul #{numStr} (/assets/{numStr}.png)
+                            </option>
+                          );
+                        })}
+                      </select>
+                    </div>
+
+                    {/* INPUT LINK MANUAL */}
+                    <div className="flex items-center gap-2">
+                      <span className="text-[10px] font-bold text-slate-400 shrink-0">Atau Link URL:</span>
+                      <input
+                        type="text"
+                        placeholder="https://... atau /assets/..."
+                        value={editingWorkbook.coverImageUrl?.startsWith('data:') ? '[Foto Diupload]' : (editingWorkbook.coverImageUrl || '')}
+                        onChange={(e) => setEditingWorkbook({ ...editingWorkbook, coverImageUrl: e.target.value })}
+                        className="text-xs bg-white border border-slate-300 rounded-lg px-2.5 py-1.5 w-full text-slate-700 focus:outline-none font-mono"
+                      />
+                    </div>
+
+                    {/* PRATINJAU COVER */}
+                    {editingWorkbook.coverImageUrl && (
+                      <div className="p-2 bg-white border border-slate-200 rounded-xl flex items-center gap-3">
+                        <img
+                          src={editingWorkbook.coverImageUrl}
+                          alt="Cover Preview"
+                          className="w-16 h-16 object-contain rounded-lg border border-slate-200 bg-slate-50 p-0.5 shrink-0"
+                        />
+                        <div className="flex-1 overflow-hidden">
+                          <span className="text-xs font-bold text-emerald-800 block">✓ Sampul Terpasang</span>
+                          <span className="text-[10px] text-slate-500 block truncate font-mono mt-0.5">
+                            {editingWorkbook.coverImageUrl.startsWith('data:') ? 'Data URL (Tersimpan)' : editingWorkbook.coverImageUrl}
+                          </span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
 
                 {/* Sections & Questions Editor */}
@@ -1243,19 +1349,63 @@ export const AdminDashboard: React.FC = () => {
                               />
                             </div>
 
-                            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 text-[11px]">
-                              <label className="text-slate-500 shrink-0 font-bold">Ilustrasi (01-50):</label>
-                              <div className="flex items-center gap-2 w-full">
+                            {/* DUAL OPTION IMAGE SELECTOR: UPLOAD & LINK */}
+                            <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
+                              <div className="flex items-center justify-between">
+                                <label className="text-[11px] font-bold text-slate-700 flex items-center gap-1.5">
+                                  <ImageIcon className="w-3.5 h-3.5 text-slate-600" />
+                                  <span>Ilustrasi Pertanyaan</span>
+                                </label>
+                                {q.imageUrl && (
+                                  <button
+                                    type="button"
+                                    onClick={() => {
+                                      const updatedSecs = [...editingWorkbook.sections];
+                                      updatedSecs[sIdx].questions[qIdx].imageUrl = '';
+                                      setEditingWorkbook({ ...editingWorkbook, sections: updatedSecs });
+                                    }}
+                                    className="text-[10px] font-bold text-rose-600 hover:text-rose-800"
+                                  >
+                                    Hapus Foto
+                                  </button>
+                                )}
+                              </div>
+
+                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                {/* OPSI 1: UPLOAD DARI KOMPUTER / HP */}
+                                <label className="flex items-center justify-center gap-2 p-2 bg-white hover:bg-slate-100 border border-dashed border-slate-300 rounded-lg cursor-pointer text-slate-700 transition-colors shadow-2xs">
+                                  <Upload className="w-3.5 h-3.5 text-slate-600 shrink-0" />
+                                  <span className="text-[11px] font-bold font-handwriting">1. Upload Foto / Berkas</span>
+                                  <input
+                                    type="file"
+                                    accept="image/*"
+                                    className="hidden"
+                                    onChange={(e) => {
+                                      const file = e.target.files?.[0];
+                                      if (file) {
+                                        handleImageFileUpload(file, (dataUrl) => {
+                                          const updatedSecs = [...editingWorkbook.sections];
+                                          updatedSecs[sIdx].questions[qIdx].imageUrl = dataUrl;
+                                          setEditingWorkbook({ ...editingWorkbook, sections: updatedSecs });
+                                        });
+                                      }
+                                    }}
+                                  />
+                                </label>
+
+                                {/* OPSI 2: PILIH DARI PRESET 01-50 */}
                                 <select
-                                  value={q.imageUrl || ''}
+                                  value={q.imageUrl?.startsWith('/assets/') ? q.imageUrl : ''}
                                   onChange={(e) => {
-                                    const updatedSecs = [...editingWorkbook.sections];
-                                    updatedSecs[sIdx].questions[qIdx].imageUrl = e.target.value;
-                                    setEditingWorkbook({ ...editingWorkbook, sections: updatedSecs });
+                                    if (e.target.value) {
+                                      const updatedSecs = [...editingWorkbook.sections];
+                                      updatedSecs[sIdx].questions[qIdx].imageUrl = e.target.value;
+                                      setEditingWorkbook({ ...editingWorkbook, sections: updatedSecs });
+                                    }
                                   }}
-                                  className="text-xs bg-slate-50 border border-slate-300 rounded-lg px-2.5 py-1 text-slate-800 font-bold focus:outline-none focus:border-slate-800 shrink-0"
+                                  className="text-[11px] bg-white border border-slate-300 rounded-lg px-2 py-1.5 text-slate-800 font-bold focus:outline-none focus:border-slate-800 w-full"
                                 >
-                                  <option value="">-- Pilih Ilustrasi 01 - 50 --</option>
+                                  <option value="">2. Pilih Preset (01 - 50)</option>
                                   {Array.from({ length: 50 }, (_, i) => {
                                     const numStr = String(i + 1).padStart(2, '0');
                                     return (
@@ -1265,38 +1415,48 @@ export const AdminDashboard: React.FC = () => {
                                     );
                                   })}
                                 </select>
+                              </div>
+
+                              {/* INPUT LINK / URL MANUAL */}
+                              <div className="flex items-center gap-2">
+                                <span className="text-[10px] font-bold text-slate-400 shrink-0">Atau Link URL:</span>
                                 <input
                                   type="text"
-                                  placeholder="Atau masukkan URL kustom..."
-                                  value={q.imageUrl || ''}
+                                  placeholder="https://... atau /assets/..."
+                                  value={q.imageUrl?.startsWith('data:') ? '[Foto Diupload]' : (q.imageUrl || '')}
                                   onChange={(e) => {
                                     const updatedSecs = [...editingWorkbook.sections];
                                     updatedSecs[sIdx].questions[qIdx].imageUrl = e.target.value;
                                     setEditingWorkbook({ ...editingWorkbook, sections: updatedSecs });
                                   }}
-                                  className="text-[11px] bg-slate-50 border border-slate-300 rounded-lg px-2.5 py-1 w-full text-slate-700 focus:bg-white focus:outline-none font-mono"
+                                  className="text-[11px] bg-white border border-slate-300 rounded-lg px-2 py-1 w-full text-slate-700 focus:outline-none font-mono"
                                 />
                               </div>
-                            </div>
 
-                            {/* LIVE IMAGE PREVIEW IN EDITOR */}
-                            {q.imageUrl && q.imageUrl.trim() !== '' && (
-                              <div className="mt-1 p-2 bg-slate-100 border border-slate-200 rounded-lg flex items-center gap-3">
-                                <img
-                                  src={q.imageUrl}
-                                  alt="Pratinjau Gambar"
-                                  className="w-16 h-14 object-contain rounded border border-slate-300 bg-white"
-                                />
-                                <div className="flex-1 overflow-hidden">
-                                  <span className="text-[11px] font-bold text-slate-900 block truncate">
-                                    ✓ Gambar Terdeteksi
-                                  </span>
-                                  <span className="text-[9px] text-slate-500 block truncate">
-                                    {q.imageUrl}
-                                  </span>
+                              {/* LIVE IMAGE PREVIEW IN EDITOR */}
+                              {q.imageUrl && q.imageUrl.trim() !== '' && (
+                                <div className="p-2 bg-white border border-slate-200 rounded-lg flex items-center gap-3">
+                                  <img
+                                    src={q.imageUrl}
+                                    alt="Pratinjau Gambar"
+                                    className="w-14 h-14 object-contain rounded border border-slate-300 bg-slate-50 p-0.5 shrink-0"
+                                  />
+                                  <div className="flex-1 overflow-hidden">
+                                    <span className="text-xs font-bold text-emerald-800 flex items-center gap-1">
+                                      <span>✓ Gambar Terdeteksi</span>
+                                      {q.imageUrl.startsWith('data:') && (
+                                        <span className="text-[9px] px-1.5 py-0.2 rounded bg-emerald-100 text-emerald-900 border border-emerald-300">
+                                          Upload Lokal
+                                        </span>
+                                      )}
+                                    </span>
+                                    <span className="text-[9px] text-slate-500 block truncate font-mono mt-0.5">
+                                      {q.imageUrl.startsWith('data:') ? 'Data URL (Tersimpan di Workbook)' : q.imageUrl}
+                                    </span>
+                                  </div>
                                 </div>
-                              </div>
-                            )}
+                              )}
+                            </div>
 
                             <div className="flex items-center gap-2 text-[11px]">
                               <label className="text-slate-400 shrink-0">
