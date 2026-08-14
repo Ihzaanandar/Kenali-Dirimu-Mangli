@@ -166,7 +166,7 @@ const AppContent: React.FC = () => {
       )}
 
       {/* MAIN CONTENT AREA */}
-      <main className="flex-1 px-3 py-2 sm:p-8 max-w-6xl w-full mx-auto pb-20 md:pb-8">
+      <main className="flex-1 p-4 sm:p-8 max-w-6xl w-full mx-auto">
         
         {/* VIEW CONDITIONAL ROUTING */}
         {currentView === 'session' && <WorkbookSession />}
@@ -337,39 +337,6 @@ const AppContent: React.FC = () => {
         )}
 
       </main>
-
-      {/* 📱 MOBILE BOTTOM NAVIGATION BAR */}
-      <nav className="md:hidden fixed bottom-0 inset-x-0 z-40 bg-[#f8f7f3]/95 backdrop-blur-md border-t border-slate-300/80 flex items-center justify-around py-1.5 px-1 safe-area-bottom">
-        {[
-          { id: 'landing', label: 'Beranda', Icon: Home },
-          { id: 'session', label: 'Journal', Icon: BookOpen },
-          { id: 'favorites', label: 'Favorit', Icon: Heart },
-          { id: 'progress', label: 'Progres', Icon: BarChart3 },
-          { id: 'profile', label: 'Profil', Icon: User },
-        ].map(item => {
-          const isActive = currentView === item.id || (item.id === 'session' && currentView === 'summary');
-          return (
-            <button
-              key={item.id}
-              onClick={() => {
-                if (item.id === 'session') handleStartJournaling();
-                else setCurrentView(item.id as any);
-              }}
-              className={`flex flex-col items-center justify-center gap-0.5 px-2 py-1.5 rounded-xl min-w-[56px] transition-all ${
-                isActive
-                  ? 'text-slate-900 font-extrabold'
-                  : 'text-slate-500 hover:text-slate-800'
-              }`}
-            >
-              <item.Icon className={`w-5 h-5 ${isActive ? 'text-slate-900' : 'text-slate-400'}`} />
-              <span className={`text-[10px] font-handwriting leading-none ${isActive ? 'font-bold' : ''}`}>
-                {item.label}
-              </span>
-              {isActive && <div className="w-4 h-0.5 bg-slate-900 rounded-full mt-0.5" />}
-            </button>
-          );
-        })}
-      </nav>
 
       {/* MODAL DIALOGS */}
       <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} />
