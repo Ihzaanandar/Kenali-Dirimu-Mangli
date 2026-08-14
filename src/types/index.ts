@@ -1,5 +1,23 @@
 export type RoleType = 'student' | 'psychologist' | 'admin';
 
+export interface UserProfileData {
+  displayName?: string;
+  comfortableWhen?: string;
+  smallHappiness?: string;
+  wantToLearn?: string;
+  wantToChange?: string;
+  wantToMaintain?: string;
+  futureLetter?: string;
+  updatedAt?: string;
+}
+
+export interface MoodEntry {
+  id: string;
+  studentId: string;
+  mood: string; // e.g. 'Bahagia', 'Tenang', 'Bersyukur', 'Sedih', 'Cemas', 'Marah', 'Biasa saja', 'Campur aduk'
+  timestamp: string;
+}
+
 export interface User {
   id: string;
   role: RoleType;
@@ -8,6 +26,9 @@ export interface User {
   className?: string;
   pinHash?: string;
   createdAt: string;
+  profileData?: UserProfileData;
+  moodEntries?: MoodEntry[];
+  favorites?: string[]; // Array of question IDs marked as favorite
 }
 
 export type QuestionType =
@@ -22,6 +43,7 @@ export type QuestionType =
 
 export type QuestionThemeStyle =
   | 'default'
+  | 'pencil_sketch'
   | 'bullying_ink'
   | 'mood_pastel'
   | 'school_notebook'
@@ -54,6 +76,7 @@ export interface Section {
   workbookId: string;
   title: string;
   description: string;
+  icon?: string;
   orderIndex: number;
   questions: Question[];
 }
@@ -61,6 +84,7 @@ export interface Section {
 export interface Workbook {
   id: string;
   title: string;
+  subtitle?: string;
   description: string;
   coverImageUrl?: string;
   status: 'draft' | 'published' | 'archived';
@@ -109,3 +133,5 @@ export interface StudentSummaryData {
   totalAnswered: number;
   insightNote: string;
 }
+
+export type ViewType = 'landing' | 'session' | 'summary' | 'progress' | 'profile' | 'about' | 'favorites' | 'admin';

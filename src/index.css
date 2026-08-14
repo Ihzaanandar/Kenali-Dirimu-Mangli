@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Kalam:wght@400;700&family=Patrick+Hand&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,8 +10,8 @@
     padding: 0;
     width: 100%;
     min-height: 100vh;
-    background-color: #f3f2ee;
-    color: #262626;
+    background-color: #f7f6f2;
+    color: #1e293b;
     font-family: 'Plus Jakarta Sans', sans-serif;
   }
 }
@@ -29,62 +31,107 @@
 
 /* Paper Texture & Notebook Ruled Lines */
 .paper-bg {
-  background-color: #f8f7f3;
-  background-image: radial-gradient(#e5e3dc 0.75px, transparent 0.75px);
-  background-size: 16px 16px;
+  background-color: #f7f6f2;
+  background-image: radial-gradient(#e2e0d8 0.8px, transparent 0.8px);
+  background-size: 18px 18px;
 }
 
 .ruled-notebook {
-  background-color: #fcfbf9;
+  background-color: #ffffff;
   background-image: repeating-linear-gradient(
     transparent,
     transparent 31px,
-    #e2e0d8 31px,
-    #e2e0d8 32px
+    #e2e8f0 31px,
+    #e2e8f0 32px
   );
   line-height: 32px;
 }
 
 /* Masking Tape Decoration Effect */
 .tape-strip {
-  background-color: rgba(245, 240, 225, 0.75);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  border: 1px dashed rgba(200, 190, 170, 0.5);
+  background-color: rgba(245, 240, 225, 0.85);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  border: 1px dashed rgba(200, 190, 170, 0.6);
   backdrop-filter: blur(2px);
 }
 
 /* Charcoal Pencil Brush Effect for Buttons */
 .btn-charcoal {
-  background-color: #1c1c1e;
+  background-color: #0f172a;
   color: #ffffff;
   border-radius: 9999px;
   transition: all 0.2s ease-in-out;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
 }
 
 .btn-charcoal:hover {
-  background-color: #333336;
+  background-color: #1e293b;
   transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.22);
+}
+
+/* Pencil Sketch Box & Borders */
+.pencil-card {
+  background-color: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  box-shadow: 3px 3px 0px 0px rgba(15, 23, 42, 0.08);
+  border-radius: 1.25rem;
+}
+
+.pencil-border {
+  border: 2px dashed #94a3b8;
+}
+
+/* Thought Bubble Style */
+.thought-bubble {
+  position: relative;
+  background: #ffffff;
+  border: 1.5px solid #334155;
+  border-radius: 1.25rem;
+  padding: 0.625rem 1rem;
+  font-family: 'Patrick Hand', cursive;
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.06);
+}
+
+.thought-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 20px;
+  width: 10px;
+  height: 10px;
+  background: #ffffff;
+  border-right: 1.5px solid #334155;
+  border-bottom: 1.5px solid #334155;
+  border-radius: 50%;
+}
+
+/* Torn Paper Edge Decoration */
+.torn-paper-edge {
+  position: relative;
+}
+
+.torn-paper-edge::before {
+  content: "";
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background: radial-gradient(circle, transparent 60%, rgba(247, 246, 242, 0.3) 100%);
+  pointer-events: none;
 }
 
 /* Glassmorphism Utilities */
 .glass-card {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(230, 226, 216, 0.8);
+  border: 1px solid rgba(226, 232, 240, 0.9);
 }
 
-.glass-nav {
+.glass-sidebar {
   background: rgba(248, 247, 243, 0.95);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(226, 222, 210, 0.8);
-}
-
-.gradient-text {
-  color: #1c1c1e;
+  border-right: 1px solid rgba(226, 232, 240, 0.9);
 }
 
 .card-hover-effect {
@@ -103,14 +150,67 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #f3f2ee;
+  background: #f7f6f2;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #d4d0c5;
+  background: #cbd5e1;
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #b5b0a3;
+  background: #94a3b8;
 }
+
+/* Mobile & Touch Responsiveness Utilities */
+@media (max-width: 640px) {
+  input[type="text"], textarea, select {
+    font-size: 16px !important; /* Prevents auto-zoom on iOS safari */
+  }
+}
+
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* Safe Area for iPhone Notch & Home Bar */
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.safe-area-top {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+/* Minimum Touch Target for Mobile Accessibility */
+@media (max-width: 768px) {
+  button, a, [role="button"] {
+    min-height: 44px;
+  }
+}
+
+/* FadeIn Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.35s ease-out both;
+}
+
+/* Bounce Short Animation */
+@keyframes bounceShort {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.animate-bounce-short {
+  animation: bounceShort 1.5s ease-in-out infinite;
+}
+

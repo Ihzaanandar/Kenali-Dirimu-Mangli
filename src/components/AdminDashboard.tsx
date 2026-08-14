@@ -24,6 +24,7 @@ export const AdminDashboard: React.FC = () => {
   // Participant Response Inspection Modal State
   const [viewingStudentId, setViewingStudentId] = useState<string | null>(null);
   const [selectedWorkbookFilter, setSelectedWorkbookFilter] = useState<string | 'all'>('all');
+  const [inspectionTab, setInspectionTab] = useState<'profile' | 'responses' | 'mood'>('profile');
 
   // Create Student Modal State
   const [isCreateStudentOpen, setIsCreateStudentOpen] = useState(false);
@@ -809,7 +810,7 @@ export const AdminDashboard: React.FC = () => {
             <div className="p-5 sm:p-6 border-b border-slate-200 flex items-center justify-between bg-white shrink-0">
               <div>
                 <h3 className="text-lg font-extrabold text-slate-900">
-                  Jawaban Refleksi: {viewingStudent?.displayName} {viewingStudent?.age ? `(${viewingStudent.age} th)` : ''}
+                  Detail Inspeksi: {viewingStudent?.displayName} {viewingStudent?.age ? `(${viewingStudent.age} th)` : ''}
                 </h3>
                 <p className="text-xs font-bold text-slate-600 mt-0.5">
                   Total {studentResponses.length} isian pertanyaan tersimpan
@@ -824,142 +825,275 @@ export const AdminDashboard: React.FC = () => {
               </button>
             </div>
 
-            {/* WORKBOOK FILTER TAB BAR */}
-            <div className="px-6 py-3 bg-[#f8f7f3] border-b border-slate-200 flex items-center gap-2 overflow-x-auto shrink-0">
-              <span className="text-xs font-bold text-slate-500 shrink-0">Filter Workbook:</span>
+            {/* TAB SELECTOR: PROFIL vs JAWABAN vs MOOD */}
+            <div className="px-6 py-2 bg-slate-100 border-b border-slate-200 flex items-center gap-2 shrink-0 text-xs font-bold">
               <button
-                onClick={() => setSelectedWorkbookFilter('all')}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 ${
-                  selectedWorkbookFilter === 'all'
+                onClick={() => setInspectionTab('profile')}
+                className={`px-4 py-2 rounded-xl transition-all ${
+                  inspectionTab === 'profile'
                     ? 'bg-slate-900 text-white shadow-xs'
-                    : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'
+                    : 'bg-white text-slate-700 hover:bg-slate-200'
                 }`}
               >
-                Semua Workbook ({studentWorkbooks.length})
+                👤 Profil & Surat Masa Depan
               </button>
 
-              {studentWorkbooks.map(wb => {
-                const wbResponseCount = studentResponses.filter(r => {
-                  return wb.sections.some(sec => sec.questions.some(q => q.id === r.questionId));
-                }).length;
+              <button
+                onClick={() => setInspectionTab('responses')}
+                className={`px-4 py-2 rounded-xl transition-all ${
+                  inspectionTab === 'responses'
+                    ? 'bg-slate-900 text-white shadow-xs'
+                    : 'bg-white text-slate-700 hover:bg-slate-200'
+                }`}
+              >
+                📖 Jawaban Refleksi ({studentResponses.length})
+              </button>
 
-                return (
+              <button
+                onClick={() => setInspectionTab('mood')}
+                className={`px-4 py-2 rounded-xl transition-all ${
+                  inspectionTab === 'mood'
+                    ? 'bg-slate-900 text-white shadow-xs'
+                    : 'bg-white text-slate-700 hover:bg-slate-200'
+                }`}
+              >
+                💖 Jejak Perasaanku ({viewingStudent?.moodEntries?.length || 0})
+              </button>
+            </div>
+
+            {/* CONTENT BY TAB */}
+            {inspectionTab === 'profile' && (
+              <div className="p-6 overflow-y-auto flex-1 space-y-6">
+                
+                {/* Profil Tentang Diriku */}
+                <div className="bg-[#fdfdfb] p-6 rounded-3xl border border-slate-300 space-y-4">
+                  <h4 className="font-extrabold text-base text-slate-900 flex items-center gap-2">
+                    <span>♙ Profil "Tentang Diriku"</span>
+                  </h4>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-semibold text-slate-800">
+                    <div className="p-3.5 rounded-2xl bg-white border border-slate-200 space-y-1">
+                      <span className="text-slate-400 font-bold uppercase tracking-wider text-[10px] block">Paling nyaman ketika:</span>
+                      <p className="font-handwriting text-base text-slate-900">
+                        {viewingStudent?.profileData?.comfortableWhen || <span className="text-slate-400 italic">Belum diisi</span>}
+                      </p>
+                    </div>
+
+                    <div className="p-3.5 rounded-2xl bg-white border border-slate-200 space-y-1">
+                      <span className="text-slate-400 font-bold uppercase tracking-wider text-[10px] block">Hal kecil yang membuat bahagia:</span>
+                      <p className="font-handwriting text-base text-slate-900">
+                        {viewingStudent?.profileData?.smallHappiness || <span className="text-slate-400 italic">Belum diisi</span>}
+                      </p>
+                    </div>
+
+                    <div className="p-3.5 rounded-2xl bg-white border border-slate-200 space-y-1">
+                      <span className="text-slate-400 font-bold uppercase tracking-wider text-[10px] block">Hal yang ingin dipelajari:</span>
+                      <p className="font-handwriting text-base text-slate-900">
+                        {viewingStudent?.profileData?.wantToLearn || <span className="text-slate-400 italic">Belum diisi</span>}
+                      </p>
+                    </div>
+
+                    <div className="p-3.5 rounded-2xl bg-white border border-slate-200 space-y-1">
+                      <span className="text-slate-400 font-bold uppercase tracking-wider text-[10px] block">Satu hal yang ingin diubah:</span>
+                      <p className="font-handwriting text-base text-slate-900">
+                        {viewingStudent?.profileData?.wantToChange || <span className="text-slate-400 italic">Belum diisi</span>}
+                      </p>
+                    </div>
+
+                    <div className="p-3.5 rounded-2xl bg-white border border-slate-200 space-y-1 sm:col-span-2">
+                      <span className="text-slate-400 font-bold uppercase tracking-wider text-[10px] block">Satu hal yang ingin dipertahankan:</span>
+                      <p className="font-handwriting text-base text-slate-900">
+                        {viewingStudent?.profileData?.wantToMaintain || <span className="text-slate-400 italic">Belum diisi</span>}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Surat Untuk Diriku */}
+                <div className="bg-[#fcfbf9] p-6 rounded-3xl border border-slate-300 space-y-3">
+                  <div className="flex items-center justify-between">
+                    <h4 className="font-extrabold text-base text-slate-900 flex items-center gap-2">
+                      <span>✉️ SURAT UNTUK DIRIKU</span>
+                    </h4>
+                    <span className="text-xs font-handwriting text-slate-400">Pesan Masa Depan</span>
+                  </div>
+
+                  <div className="p-4 rounded-2xl bg-white border border-slate-200 font-handwriting text-base leading-relaxed text-slate-900 italic">
+                    {viewingStudent?.profileData?.futureLetter ? (
+                      `"${viewingStudent.profileData.futureLetter}"`
+                    ) : (
+                      <span className="text-slate-400 not-italic font-normal">Peserta belum menulis Surat Untuk Diriku.</span>
+                    )}
+                  </div>
+                </div>
+
+              </div>
+            )}
+
+            {inspectionTab === 'mood' && (
+              <div className="p-6 overflow-y-auto flex-1 space-y-4">
+                <h4 className="font-extrabold text-sm text-slate-900">Riwayat Jejak Perasaanku ({viewingStudent?.displayName})</h4>
+                
+                {viewingStudent?.moodEntries && viewingStudent.moodEntries.length > 0 ? (
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                    {viewingStudent.moodEntries.map(m => (
+                      <div key={m.id} className="p-3 rounded-2xl bg-white border border-slate-200 text-center space-y-1">
+                        <p className="font-handwriting font-bold text-base text-slate-900">{m.mood}</p>
+                        <p className="text-[10px] text-slate-400 font-mono">
+                          {new Date(m.timestamp).toLocaleString('id-ID')}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="text-xs text-slate-400 italic font-handwriting">
+                    Belum ada riwayat perasaanku yang dicatat oleh peserta ini.
+                  </p>
+                )}
+              </div>
+            )}
+
+            {/* RESPONSES TAB */}
+            {inspectionTab === 'responses' && (
+              <div className="flex flex-col flex-1 overflow-hidden">
+                {/* WORKBOOK FILTER TAB BAR */}
+                <div className="px-6 py-3 bg-[#f8f7f3] border-b border-slate-200 flex items-center gap-2 overflow-x-auto shrink-0">
+                  <span className="text-xs font-bold text-slate-500 shrink-0">Filter Workbook:</span>
                   <button
-                    key={wb.id}
-                    onClick={() => setSelectedWorkbookFilter(wb.id)}
-                    className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 flex items-center gap-1.5 ${
-                      selectedWorkbookFilter === wb.id
+                    onClick={() => setSelectedWorkbookFilter('all')}
+                    className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 ${
+                      selectedWorkbookFilter === 'all'
                         ? 'bg-slate-900 text-white shadow-xs'
                         : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'
                     }`}
                   >
-                    <BookOpen className="w-3.5 h-3.5" />
-                    <span>{wb.title} ({wbResponseCount})</span>
+                    Semua Workbook ({studentWorkbooks.length})
                   </button>
-                );
-              })}
-            </div>
 
-            {/* SCROLLABLE RESPONSES LIST GROUPED BY WORKBOOK AND SECTION */}
-            <div className="p-6 overflow-y-auto flex-1 space-y-8">
-              {filteredWorkbooksToDisplay.map(wb => {
-                const wbSections = wb.sections.map(sec => {
-                  const items = sec.questions.map(q => {
-                    const resp = studentResponses.find(r => r.questionId === q.id);
-                    return { question: q, response: resp };
-                  }).filter(item => item.response !== undefined);
-                  return { section: sec, items };
-                }).filter(s => s.items.length > 0);
+                  {studentWorkbooks.map(wb => {
+                    const wbResponseCount = studentResponses.filter(r => {
+                      return wb.sections.some(sec => sec.questions.some(q => q.id === r.questionId));
+                    }).length;
 
-                if (wbSections.length === 0) {
-                  return (
-                    <div key={wb.id} className="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-center space-y-1">
-                      <p className="text-xs font-bold text-slate-800">{wb.title}</p>
-                      <p className="text-[11px] text-slate-400 italic">Belum ada isian jawaban untuk workbook ini.</p>
-                    </div>
-                  );
-                }
+                    return (
+                      <button
+                        key={wb.id}
+                        onClick={() => setSelectedWorkbookFilter(wb.id)}
+                        className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 flex items-center gap-1.5 ${
+                          selectedWorkbookFilter === wb.id
+                            ? 'bg-slate-900 text-white shadow-xs'
+                            : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'
+                        }`}
+                      >
+                        <BookOpen className="w-3.5 h-3.5" />
+                        <span>{wb.title} ({wbResponseCount})</span>
+                      </button>
+                    );
+                  })}
+                </div>
 
-                return (
-                  <div key={wb.id} className="space-y-4">
-                    
-                    {/* Workbook Banner Header */}
-                    <div className="flex items-center gap-2 p-3 bg-[#f2eee3] rounded-2xl border border-[#dfd9c7]">
-                      <BookOpen className="w-4.5 h-4.5 text-slate-900 shrink-0" />
-                      <h4 className="font-extrabold text-sm text-slate-900">{wb.title}</h4>
-                      <span className="ml-auto text-[10px] font-bold text-slate-700 bg-white/90 px-2.5 py-0.5 rounded-full border border-[#d2cbba]">
-                        Versi {wb.version}
-                      </span>
-                    </div>
+                {/* SCROLLABLE RESPONSES LIST GROUPED BY WORKBOOK AND SECTION */}
+                <div className="p-6 overflow-y-auto flex-1 space-y-8">
+                  {filteredWorkbooksToDisplay.map(wb => {
+                    const wbSections = wb.sections.map(sec => {
+                      const items = sec.questions.map(q => {
+                        const resp = studentResponses.find(r => r.questionId === q.id);
+                        return { question: q, response: resp };
+                      }).filter(item => item.response !== undefined);
+                      return { section: sec, items };
+                    }).filter(s => s.items.length > 0);
 
-                    {/* Sections & Questions List */}
-                    <div className="space-y-6 pl-1 sm:pl-3">
-                      {wbSections.map(({ section, items }) => (
-                        <div key={section.id} className="space-y-3">
-                          <h5 className="font-extrabold text-xs text-slate-700 flex items-center gap-2">
-                            <span className="w-2 h-2 rounded-full bg-slate-800 shrink-0" />
-                            <span>{section.title}</span>
-                          </h5>
-
-                          <div className="space-y-3">
-                            {items.map(({ question, response }) => {
-                              let formattedAnswer: React.ReactNode = '-';
-                              if (response) {
-                                if (response.answerText) {
-                                  formattedAnswer = response.answerText;
-                                } else if (response.answerJson) {
-                                  const aj = response.answerJson;
-                                  if (aj.label) formattedAnswer = aj.label;
-                                  else if (aj.rating) formattedAnswer = `Rating Bintang: ${aj.rating} / 5 ⭐`;
-                                  else if (aj.val) formattedAnswer = `Pilihan: ${aj.val}`;
-                                  else if (aj.emotions && Array.isArray(aj.emotions)) formattedAnswer = aj.emotions.join(', ');
-                                  else formattedAnswer = JSON.stringify(aj);
-                                }
-                              }
-
-                              return (
-                                <div key={question.id} className="p-4 rounded-2xl bg-[#faf9f6] border border-slate-200 space-y-2 shadow-2xs">
-                                  <div className="flex items-start justify-between gap-2">
-                                    <p className="text-xs font-bold text-slate-900 leading-snug">
-                                      <span className="text-slate-400 mr-1">Soal {question.orderIndex}:</span> {question.questionText}
-                                    </p>
-                                    <span className="text-[9px] font-extrabold px-2 py-0.5 rounded bg-slate-100 text-slate-600 border border-slate-200 shrink-0 uppercase">
-                                      {question.type.replace('_', ' ')}
-                                    </span>
-                                  </div>
-
-                                  <div className="bg-white p-3 rounded-xl border border-slate-200 space-y-1">
-                                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
-                                      Jawaban Remaja:
-                                    </span>
-                                    <p className="font-handwriting text-base text-slate-800 leading-relaxed font-semibold">
-                                      {formattedAnswer}
-                                    </p>
-                                  </div>
-
-                                  {response && (
-                                    <p className="text-[10px] font-handwriting text-slate-400 text-right">
-                                      Diisi: {new Date(response.createdAt).toLocaleString('id-ID')}
-                                    </p>
-                                  )}
-                                </div>
-                              );
-                            })}
-                          </div>
+                    if (wbSections.length === 0) {
+                      return (
+                        <div key={wb.id} className="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-center space-y-1">
+                          <p className="text-xs font-bold text-slate-800">{wb.title}</p>
+                          <p className="text-[11px] text-slate-400 italic">Belum ada isian jawaban untuk workbook ini.</p>
                         </div>
-                      ))}
-                    </div>
+                      );
+                    }
 
-                  </div>
-                );
-              })}
+                    return (
+                      <div key={wb.id} className="space-y-4">
+                        
+                        {/* Workbook Banner Header */}
+                        <div className="flex items-center gap-2 p-3 bg-[#f2eee3] rounded-2xl border border-[#dfd9c7]">
+                          <BookOpen className="w-4.5 h-4.5 text-slate-900 shrink-0" />
+                          <h4 className="font-extrabold text-sm text-slate-900">{wb.title}</h4>
+                          <span className="ml-auto text-[10px] font-bold text-slate-700 bg-white/90 px-2.5 py-0.5 rounded-full border border-[#d2cbba]">
+                            Versi {wb.version}
+                          </span>
+                        </div>
 
-              {studentResponses.length === 0 && (
-                <p className="text-center py-8 text-slate-400 font-medium text-xs">
-                  Siswa ini belum mengisi pertanyaan refleksi.
-                </p>
-              )}
-            </div>
+                        {/* Sections & Questions List */}
+                        <div className="space-y-6 pl-1 sm:pl-3">
+                          {wbSections.map(({ section, items }) => (
+                            <div key={section.id} className="space-y-3">
+                              <h5 className="font-extrabold text-xs text-slate-700 flex items-center gap-2">
+                                <span className="w-2 h-2 rounded-full bg-slate-800 shrink-0" />
+                                <span>{section.title}</span>
+                              </h5>
+
+                              <div className="space-y-3">
+                                {items.map(({ question, response }) => {
+                                  let formattedAnswer: React.ReactNode = '-';
+                                  if (response) {
+                                    if (response.answerText) {
+                                      formattedAnswer = response.answerText;
+                                    } else if (response.answerJson) {
+                                      const aj = response.answerJson;
+                                      if (aj.label) formattedAnswer = aj.label;
+                                      else if (aj.rating) formattedAnswer = `Rating Bintang: ${aj.rating} / 5 ⭐`;
+                                      else if (aj.val) formattedAnswer = `Pilihan: ${aj.val}`;
+                                      else if (aj.emotions && Array.isArray(aj.emotions)) formattedAnswer = aj.emotions.join(', ');
+                                      else formattedAnswer = JSON.stringify(aj);
+                                    }
+                                  }
+
+                                  return (
+                                    <div key={question.id} className="p-4 rounded-2xl bg-[#faf9f6] border border-slate-200 space-y-2 shadow-2xs">
+                                      <div className="flex items-start justify-between gap-2">
+                                        <p className="text-xs font-bold text-slate-900 leading-snug">
+                                          <span className="text-slate-400 mr-1">Soal {question.orderIndex}:</span> {question.questionText}
+                                        </p>
+                                        <span className="text-[9px] font-extrabold px-2 py-0.5 rounded bg-slate-100 text-slate-600 border border-slate-200 shrink-0 uppercase">
+                                          {question.type.replace('_', ' ')}
+                                        </span>
+                                      </div>
+
+                                      <div className="bg-white p-3 rounded-xl border border-slate-200 space-y-1">
+                                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+                                          Jawaban Remaja:
+                                        </span>
+                                        <p className="font-handwriting text-base text-slate-800 leading-relaxed font-semibold">
+                                          {formattedAnswer}
+                                        </p>
+                                      </div>
+
+                                      {response && (
+                                        <p className="text-[10px] font-handwriting text-slate-400 text-right">
+                                          Diisi: {new Date(response.createdAt).toLocaleString('id-ID')}
+                                        </p>
+                                      )}
+                                    </div>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+
+                      </div>
+                    );
+                  })}
+
+                  {studentResponses.length === 0 && (
+                    <p className="text-center py-8 text-slate-400 font-medium text-xs font-handwriting">
+                      Siswa ini belum mengisi pertanyaan refleksi.
+                    </p>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       )}

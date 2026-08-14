@@ -1,6 +1,7 @@
 import React from 'react';
 import { Question, ResponseItem } from '../types';
-import { HelpCircle, Star, Heart, Check, Lightbulb, Lock, Sparkles, Pencil } from 'lucide-react';
+import { useApp } from '../context/AppContext';
+import { Star, Heart, Check, Pencil } from 'lucide-react';
 
 interface QuestionCardProps {
   question: Question;
@@ -13,6 +14,18 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
   existingResponse,
   onAnswerChange
 }) => {
+  const { favorites, toggleFavorite } = useApp();
+
+  if (!question) {
+    return (
+      <div className="bg-[#fcfbf9] rounded-3xl p-8 shadow-md border border-slate-300 text-center font-handwriting text-slate-500">
+        Tidak ada pertanyaan untuk ditampilkan.
+      </div>
+    );
+  }
+
+  const isFavorite = (favorites || []).includes(question.id);
+
   const currentText = existingResponse?.answerText || '';
   const currentJson = existingResponse?.answerJson;
 
@@ -70,7 +83,27 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
         ))}
       </div>
 
-      <div className="pt-2">
+      {/* Header bar: Favorite toggle */}
+      <div className="flex items-center justify-between pt-2 border-b border-slate-200/80 pb-3">
+        <span className="font-handwriting text-xs font-bold text-slate-500 uppercase tracking-widest flex items-center gap-1.5">
+          <span>✏️ Catatan Refleksi</span>
+        </span>
+        <button
+          type="button"
+          onClick={() => toggleFavorite(question.id)}
+          className={`flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-extrabold font-handwriting transition-all border shadow-2xs ${
+            isFavorite
+              ? 'bg-rose-500 text-white border-rose-600 shadow-xs scale-105'
+              : 'bg-white text-slate-700 border-slate-300 hover:border-rose-400 hover:text-rose-600'
+          }`}
+          title={isFavorite ? 'Hapus dari daftar favorit' : 'Simpan pertanyaan ini ke daftar favorit'}
+        >
+          <Heart className={`w-4 h-4 ${isFavorite ? 'fill-white text-white' : 'text-rose-500'}`} />
+          <span>{isFavorite ? '❤️ Favorit Tersimpan' : '🤍 Favoritkan Pertanyaan Ini'}</span>
+        </button>
+      </div>
+
+      <div>
 
         {/* 1. INPUT TEKS SINGKAT */}
         {question.type === 'short_text' && (
@@ -79,7 +112,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
               type="text"
               value={currentText}
               onChange={(e) => onAnswerChange(question.id, e.target.value, null)}
-              placeholder="Tuliskan jawaban singkatmu di sini..."
+              placeholder="Tuliskan jawaban jujurmu di sini..."
               className="w-full px-5 py-4 bg-transparent border-b-2 border-slate-400 text-slate-800 focus:outline-none focus:border-slate-800 text-base sm:text-lg font-handwriting leading-loose placeholder:text-slate-400 transition-all"
             />
             <Pencil className="w-4 h-4 text-slate-400 absolute right-3 bottom-4 pointer-events-none opacity-60" />
@@ -98,7 +131,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
             />
             <div className="flex items-center justify-end gap-1.5 text-xs font-handwriting text-slate-400 pt-2 border-t border-slate-200/60">
               <Pencil className="w-3.5 h-3.5" />
-              <span>Jurnal Refleksi Diri</span>
+              <span>Jurnal My Unsaid Journal</span>
             </div>
           </div>
         )}
@@ -160,23 +193,23 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
 
         {/* 5. PILIHAN EMOJI */}
         {question.type === 'emoji_selector' && (
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3.5">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5">
             {question.options?.map((opt) => {
               const selectedList: string[] = Array.isArray(currentJson?.selected) ? currentJson.selected : [];
-              const isSelected = selectedList.includes(opt.value);
+              const isSelected = selectedList.includes(opt.value) || currentText === opt.value;
               return (
                 <button
                   key={opt.id}
                   type="button"
                   onClick={() => handleEmojiSelect(opt.value)}
-                  className={`p-5 rounded-2xl border flex flex-col items-center justify-center gap-2.5 text-center transition-all ${
+                  className={`p-4 rounded-2xl border flex flex-col items-center justify-center gap-2 text-center transition-all ${
                     isSelected
-                      ? 'bg-slate-900 text-white border-slate-900 shadow-md scale-[1.04]'
+                      ? 'bg-slate-900 text-white border-slate-900 shadow-md scale-[1.03]'
                       : 'bg-white border-slate-300 text-slate-800 hover:border-slate-500 hover:bg-slate-50'
                   }`}
                 >
-                  <span className="text-4xl sm:text-5xl animate-bounce-short">{opt.icon || '😊'}</span>
-                  <span className="font-handwriting text-sm font-bold">{opt.label}</span>
+                  <span className="text-3xl sm:text-4xl">{opt.icon || '😊'}</span>
+                  <span className="font-handwriting text-xs font-bold">{opt.label}</span>
                 </button>
               );
             })}
