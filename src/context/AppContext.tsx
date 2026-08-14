@@ -65,14 +65,14 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         sections: Array.isArray(w.sections) ? w.sections : []
       }));
 
-      // Ensure INITIAL_WORKBOOKS are included
+      // Ensure INITIAL_WORKBOOKS are included & updated
       INITIAL_WORKBOOKS.forEach(initWb => {
         const idx = valid.findIndex(w => w.id === initWb.id);
         if (idx < 0) {
           valid.push(initWb);
         } else {
-          // If stored workbook has no sections or outdated sections, update from initial
-          if (!valid[idx].sections || valid[idx].sections.length === 0) {
+          // If stored workbook is system default or has version mismatch, update from initial
+          if (initWb.id === 'wb-my-unsaid-journal' || valid[idx].version !== initWb.version || !valid[idx].sections || valid[idx].sections.length === 0) {
             valid[idx] = initWb;
           }
         }
@@ -114,6 +114,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       try {
         const parsed = JSON.parse(saved);
         if (parsed && Array.isArray(parsed.sections) && parsed.sections.length > 0) {
+          if (parsed.id === 'wb-my-unsaid-journal') return INITIAL_WORKBOOKS[0];
           return parsed;
         }
       } catch {}
