@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
-import { User, Save, CheckCircle2, Heart, Sparkles, Send } from 'lucide-react';
+import { User, Save, CheckCircle2, Heart, Sparkles, Send, LogOut } from 'lucide-react';
 
 export const ProfileSection: React.FC = () => {
-  const { currentUser, userProfileData, saveUserProfile } = useApp();
+  const { currentUser, userProfileData, saveUserProfile, logout } = useApp();
 
   const [comfortableWhen, setComfortableWhen] = useState(userProfileData?.comfortableWhen || '');
   const [smallHappiness, setSmallHappiness] = useState(userProfileData?.smallHappiness || '');
@@ -52,18 +52,33 @@ export const ProfileSection: React.FC = () => {
           <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-28 h-6 tape-strip rounded-sm transform rotate-1 pointer-events-none" />
 
           {/* User Name Badge */}
-          <div className="flex items-center gap-3 pb-4 border-b border-slate-200">
-            <div className="w-12 h-12 rounded-2xl bg-slate-900 text-white flex items-center justify-center font-bold text-xl shadow-xs">
-              {currentUser?.displayName.charAt(0).toUpperCase() || 'U'}
+          <div className="flex items-center justify-between pb-4 border-b border-slate-200">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-2xl bg-slate-900 text-white flex items-center justify-center font-bold text-xl shadow-xs">
+                {currentUser?.displayName.charAt(0).toUpperCase() || 'U'}
+              </div>
+              <div>
+                <h3 className="font-heading-hand text-2xl font-bold text-slate-900">
+                  Nama panggilan: {currentUser?.displayName || 'Sahabat Remaja'}
+                </h3>
+                <p className="font-handwriting text-xs text-slate-500">
+                  Usia: {currentUser?.age ? `${currentUser.age} tahun` : '15 tahun'}
+                </p>
+              </div>
             </div>
-            <div>
-              <h3 className="font-heading-hand text-2xl font-bold text-slate-900">
-                Nama panggilan: {currentUser?.displayName || 'Sahabat Remaja'}
-              </h3>
-              <p className="font-handwriting text-xs text-slate-500">
-                Usia: {currentUser?.age ? `${currentUser.age} tahun` : '15 tahun'}
-              </p>
-            </div>
+
+            {currentUser && (
+              <button
+                type="button"
+                onClick={logout}
+                className="flex items-center gap-1.5 px-3.5 py-2 rounded-2xl bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 text-xs font-bold font-handwriting shadow-2xs transition-colors shrink-0"
+                title="Keluar dari akun ini"
+              >
+                <LogOut className="w-4 h-4" />
+                <span className="hidden sm:inline">Keluar Akun</span>
+                <span className="sm:hidden">Keluar</span>
+              </button>
+            )}
           </div>
 
           {/* Form Inputs */}

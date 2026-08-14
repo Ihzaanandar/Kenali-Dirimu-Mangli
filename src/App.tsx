@@ -22,7 +22,8 @@ import {
   Info,
   ShieldAlert,
   ChevronDown,
-  Home
+  Home,
+  LogOut
 } from 'lucide-react';
 
 const AppContent: React.FC = () => {
@@ -31,7 +32,8 @@ const AppContent: React.FC = () => {
     currentView,
     workbooks,
     startWorkbook,
-    setCurrentView
+    setCurrentView,
+    logout
   } = useApp();
 
   const [isAuthOpen, setIsAuthOpen] = useState(false);
@@ -75,12 +77,22 @@ const AppContent: React.FC = () => {
 
         <div className="flex items-center gap-2">
           {currentUser ? (
-            <button
-              onClick={() => setCurrentView('profile')}
-              className="w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center text-xs font-bold"
-            >
-              {currentUser.displayName.charAt(0).toUpperCase()}
-            </button>
+            <div className="flex items-center gap-1.5">
+              <button
+                onClick={() => setCurrentView('profile')}
+                className="w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center text-xs font-bold shadow-xs"
+                title="Buka Profil"
+              >
+                {currentUser.displayName.charAt(0).toUpperCase()}
+              </button>
+              <button
+                onClick={logout}
+                className="p-1.5 rounded-xl text-slate-500 hover:text-rose-600 hover:bg-rose-50 border border-slate-300 bg-white transition-colors"
+                title="Keluar Akun"
+              >
+                <LogOut className="w-4 h-4" />
+              </button>
+            </div>
           ) : (
             <button
               onClick={() => setIsAuthOpen(true)}
@@ -134,6 +146,21 @@ const AppContent: React.FC = () => {
             >
               Panel Admin
             </button>
+          )}
+
+          {currentUser && (
+            <div className="pt-2 border-t border-slate-200">
+              <button
+                onClick={() => {
+                  logout();
+                  setIsMobileMenuOpen(false);
+                }}
+                className="w-full text-left p-3 rounded-xl font-handwriting text-base font-bold text-rose-600 bg-rose-50/70 hover:bg-rose-100 flex items-center gap-3 border border-rose-200 transition-colors"
+              >
+                <LogOut className="w-4 h-4 text-rose-600" />
+                <span>Keluar Akun ({currentUser.displayName})</span>
+              </button>
+            </div>
           )}
         </div>
       )}
