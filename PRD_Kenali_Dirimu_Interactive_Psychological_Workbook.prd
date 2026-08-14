@@ -1,0 +1,1331 @@
+# PRODUCT REQUIREMENTS DOCUMENT (PRD)
+# Kenali Dirimu
+## Interactive Psychological Workbook untuk Remaja
+
+**Versi:** 1.0
+**Status:** Draft siap pengembangan MVP
+**Platform:** Web responsive, mobile-first
+**Target utama:** Remaja SMP/SMA, sekitar usia 13–18 tahun
+**Bahasa:** Bahasa Indonesia
+
+---
+
+# 1. Ringkasan Produk
+
+Kenali Dirimu adalah website interactive psychological workbook yang membantu remaja melakukan self-reflection melalui rangkaian materi singkat, pertanyaan reflektif, pilihan emosi, skala penilaian, dan aktivitas journaling sederhana.
+
+Produk ini merupakan versi digital dari konsep booklet psikologi interaktif. Jika booklet fisik mengharuskan pengguna menulis jawaban pada halaman tertentu, website menyediakan pengalaman serupa secara digital, tetapi jawaban, progress, dan riwayat pengisian dapat disimpan secara terstruktur.
+
+Produk tidak ditujukan untuk mendiagnosis gangguan mental. Sistem berfungsi sebagai media refleksi, edukasi psikologis, dan screening/identifikasi awal yang dapat membantu pengguna mengenali kondisi diri serta mengetahui kapan perlu mencari dukungan lebih lanjut.
+
+---
+
+# 2. Latar Belakang
+
+Remaja sering menghadapi berbagai perubahan dan tuntutan yang berkaitan dengan sekolah, pertemanan, keluarga, citra diri, media sosial, emosi, dan rencana masa depan. Tidak semua remaja mudah mengungkapkan apa yang sedang mereka rasakan secara langsung.
+
+Booklet psikologi interaktif dapat menjadi media yang membantu remaja berhenti sejenak, mengenali perasaan, memahami pengalaman, dan menuliskan hal-hal yang mungkin sulit disampaikan secara verbal.
+
+Versi website memberikan beberapa keunggulan dibanding booklet fisik:
+
+- dapat diakses melalui smartphone atau perangkat yang tersedia;
+- jawaban dapat disimpan dan dilanjutkan kembali;
+- progress setiap pengguna dapat dicatat;
+- konten booklet dapat diperbarui tanpa mencetak ulang;
+- admin/psikolog dapat mengelola materi secara terstruktur;
+- data dapat dianalisis secara agregat dengan memperhatikan privasi.
+
+---
+
+# 3. Problem Statement
+
+## Masalah utama
+
+Remaja membutuhkan media refleksi psikologis yang:
+
+1. mudah digunakan secara mandiri;
+2. tidak terasa seperti kuesioner formal;
+3. mampu menyimpan jawaban dan progress;
+4. menggunakan bahasa yang sesuai dengan remaja;
+5. memberikan pengalaman yang privat;
+6. dapat dikelola oleh pihak pendamping seperti psikolog atau administrator.
+
+## Masalah teknis
+
+Produk memerlukan sistem yang mampu:
+
+- mengelola identitas pengguna;
+- menyimpan respons terhadap setiap pertanyaan;
+- mengatur booklet dan urutan pertanyaan;
+- menyimpan progress;
+- memberikan hak akses berbeda untuk pengguna;
+- menjaga keamanan data refleksi psikologis;
+- berjalan dengan biaya awal yang rendah melalui free tier.
+
+---
+
+# 4. Product Vision
+
+Membangun ruang refleksi digital yang sederhana, nyaman, dan privat agar remaja dapat lebih mengenali dirinya melalui pengalaman interaktif yang terstruktur.
+
+---
+
+# 5. Product Goals
+
+## Goals MVP
+
+1. Remaja dapat masuk ke website tanpa proses registrasi yang rumit.
+2. Remaja dapat menggunakan nama panggilan sebagai identitas tampilan.
+3. Remaja menggunakan PIN 4 digit untuk melindungi sesi pribadinya.
+4. Remaja dapat mengisi booklet secara bertahap.
+5. Jawaban dan progress tersimpan secara otomatis.
+6. Pengguna dapat keluar dan melanjutkan kembali di lain waktu.
+7. Admin/psikolog dapat membuat dan mengelola booklet.
+8. Admin/psikolog dapat melihat progress dan respons sesuai hak akses.
+9. Sistem tidak memberikan diagnosis psikologis otomatis.
+10. Arsitektur dapat berjalan dengan Next.js, Supabase, dan Vercel.
+
+## Non-goals MVP
+
+1. Diagnosis gangguan mental secara otomatis.
+2. Konseling atau terapi online real-time.
+3. Chatbot psikologis sebagai pengganti psikolog.
+4. Sistem media sosial antar pengguna.
+5. Marketplace atau layanan pembayaran.
+6. Aplikasi native Android/iOS pada tahap awal.
+
+---
+
+# 6. Target User
+
+## 6.1 Primary User: Remaja
+
+Target utama adalah remaja usia sekitar 13–18 tahun, terutama siswa SMP dan SMA.
+
+Karakteristik:
+
+- terbiasa menggunakan smartphone;
+- nyaman dengan interface visual;
+- lebih menyukai bahasa yang natural dan tidak terlalu formal;
+- dapat melakukan self-reflection dengan pertanyaan terbimbing;
+- membutuhkan ruang yang terasa aman dan tidak menghakimi.
+
+## 6.2 Secondary User: Psikolog/Pendamping
+
+Pengguna dengan hak pengelolaan dan/atau pemantauan yang diberikan sistem.
+
+Fungsi utama:
+
+- mengelola konten booklet;
+- mengelola pertanyaan;
+- melihat progress;
+- melihat respons yang memang diizinkan;
+- melakukan tindak lanjut di luar sistem jika diperlukan.
+
+## 6.3 Admin
+
+Bertugas mengelola sistem dan akun administratif.
+
+---
+
+# 7. User Roles & Permissions
+
+| Role | Akses utama |
+|---|---|
+| Remaja | Login, melihat booklet, menjawab pertanyaan, menyimpan progress, melihat refleksi pribadi |
+| Psikolog/Pendamping | Mengelola booklet sesuai izin, melihat progress/respons sesuai kebijakan akses |
+| Admin | Mengelola pengguna, role, booklet, pertanyaan, konfigurasi sistem |
+
+Prinsip penting: akses ke data pribadi harus berbasis role dan hak akses minimum.
+
+---
+
+# 8. Konsep UX Utama
+
+Website tidak boleh terasa seperti Google Form atau survei akademik biasa.
+
+Pengalaman harus menyerupai buku refleksi digital:
+
+**Masuk → Kenali Dirimu → Membaca materi singkat → Menjawab → Refleksi → Lanjut → Progress tersimpan → Selesai → Ringkasan pribadi**
+
+Karakteristik UX:
+
+- mobile-first;
+- visual ringan;
+- kartu pertanyaan;
+- progress bar;
+- emoji/emotion selector;
+- pilihan jawaban sederhana;
+- text area untuk journaling;
+- satu fokus utama per layar;
+- tombol navigasi jelas;
+- autosave;
+- tidak terlalu banyak teks dalam satu layar.
+
+---
+
+# 9. Authentication & Login
+
+## Keputusan produk
+
+MVP menggunakan:
+
+**Nama panggilan + PIN 4 digit**
+
+Tidak menggunakan kode sesi.
+
+Tidak mewajibkan email atau nomor telepon untuk remaja.
+
+## Flow pengguna baru
+
+1. Pengguna membuka website.
+2. Pengguna memilih opsi masuk/buat akses pribadi.
+3. Pengguna memasukkan nama panggilan.
+4. Pengguna membuat PIN 4 digit.
+5. Sistem membuat student/user identifier internal yang unik.
+6. Sistem menyimpan PIN dalam bentuk hash, bukan plaintext.
+7. Pengguna masuk ke dashboard.
+
+## Flow pengguna kembali
+
+1. Masukkan nama panggilan.
+2. Masukkan PIN 4 digit.
+3. Sistem melakukan verifikasi.
+4. Jika valid, pengguna diarahkan ke dashboard dan progress terakhir.
+
+## Lupa PIN
+
+Karena remaja tidak diwajibkan memiliki email, mekanisme recovery dilakukan melalui admin/psikolog/pendamping yang memiliki hak untuk reset PIN.
+
+Admin dapat:
+
+- mencari pengguna;
+- melakukan reset PIN;
+- menginstruksikan pengguna membuat PIN baru.
+
+## Catatan keamanan
+
+Nama panggilan bukan kredensial yang cukup untuk membuka data pribadi. PIN diperlukan.
+
+Sistem harus memiliki perlindungan brute-force, misalnya rate limiting atau percobaan login terbatas.
+
+---
+
+# 10. Information Architecture
+
+## Public
+
+- Landing Page
+- Tentang Kenali Dirimu
+- Informasi penggunaan
+- Kebijakan privasi
+- Disclaimer
+
+## Remaja
+
+- Login
+- Dashboard
+- Daftar booklet
+- Detail booklet
+- Sesi booklet
+- Pertanyaan
+- Refleksi/journaling
+- Progress
+- Ringkasan pribadi
+- Pengaturan dasar
+- Logout
+
+## Psikolog/Pendamping
+
+- Dashboard
+- Daftar peserta yang diizinkan
+- Progress peserta
+- Respons peserta
+- Booklet
+- Pertanyaan
+- Laporan agregat
+
+## Admin
+
+- Dashboard admin
+- Users
+- Roles
+- Students/participants
+- Workbooks
+- Sections
+- Questions
+- Responses
+- Audit logs
+- System settings
+
+---
+
+# 11. Struktur Booklet
+
+Booklet dapat terdiri dari beberapa section. Struktur awal yang direkomendasikan:
+
+## Section 1: Kenali Diriku
+
+Tujuan: membantu remaja mengenali identitas, karakter, nilai, dan hal yang mereka sukai.
+
+Contoh pertanyaan:
+
+- Bagaimana kamu menggambarkan dirimu dalam tiga kata?
+- Apa hal yang paling kamu sukai dari dirimu?
+- Apa hal yang sedang ingin kamu kembangkan dari dirimu?
+
+## Section 2: Mengenali Perasaan
+
+Tujuan: meningkatkan kesadaran terhadap emosi.
+
+Contoh:
+
+- Emosi apa yang paling sering kamu rasakan akhir-akhir ini?
+- Apa yang biasanya membuatmu merasa senang?
+- Apa yang biasanya membuatmu merasa tertekan?
+
+## Section 3: Pertemanan
+
+Tujuan: mengeksplorasi rasa nyaman, penerimaan, konflik, dan dukungan sosial.
+
+Contoh:
+
+- Seberapa nyaman kamu menjadi dirimu sendiri ketika bersama teman?
+- Siapa orang yang paling nyaman untuk kamu ajak bercerita?
+
+## Section 4: Sekolah dan Tekanan
+
+Tujuan: memahami pengalaman akademik dan tekanan sosial di sekolah.
+
+Contoh:
+
+- Apa yang paling membuatmu tertekan di sekolah?
+- Apa yang biasanya kamu lakukan ketika tugas terasa terlalu berat?
+
+## Section 5: Keluarga
+
+Tujuan: refleksi terhadap komunikasi dan dukungan keluarga.
+
+## Section 6: Media Sosial dan Diriku
+
+Tujuan: mengeksplorasi pengalaman remaja terhadap perbandingan sosial, validasi, dan citra diri di media sosial.
+
+## Section 7: Kebiasaan dan Keseharian
+
+Tujuan: membantu pengguna mengamati rutinitas dan kebiasaan.
+
+## Section 8: Masa Depan
+
+Tujuan: mengeksplorasi harapan, tujuan, ketakutan, dan rencana.
+
+## Section 9: Refleksi Akhir
+
+Tujuan: merangkum insight yang ingin dibawa pengguna setelah menyelesaikan booklet.
+
+---
+
+# 12. Question Types
+
+Sistem harus mendukung beberapa tipe pertanyaan agar booklet tidak monoton.
+
+1. Single choice
+2. Multiple choice
+3. Likert scale 1–5
+4. Emoji/emotion selection
+5. Text input singkat
+6. Long text/journaling
+7. Rating berbasis ikon
+8. Yes/No
+9. Slider, jika benar-benar diperlukan
+10. Informational content tanpa input pengguna
+
+Setiap pertanyaan memiliki tipe yang menentukan komponen UI dan format penyimpanan respons.
+
+---
+
+# 13. Progress & Autosave
+
+Setiap jawaban sebaiknya disimpan secara otomatis setelah validasi berhasil.
+
+Contoh progress:
+
+`6 / 10 pertanyaan`
+
+atau:
+
+`60% selesai`
+
+Jika pengguna menutup browser, progress terakhir tetap tersimpan.
+
+Saat login kembali:
+
+> "Lanjutkan dari terakhir kali?"
+
+Sistem membawa pengguna ke pertanyaan terakhir yang belum selesai.
+
+---
+
+# 14. Personal Reflection Summary
+
+Setelah booklet selesai, pengguna dapat memperoleh ringkasan refleksi pribadi.
+
+Contoh:
+
+- tema yang paling sering muncul dari jawaban yang dipilih;
+- emosi yang sering dipilih;
+- hal yang dianggap penting oleh pengguna;
+- jawaban reflektif yang pengguna tandai sebagai penting;
+- catatan pribadi yang ditulis sendiri.
+
+Ringkasan harus menggunakan bahasa netral dan tidak bersifat diagnostik.
+
+Contoh copy:
+
+"Dari jawabanmu, kamu cukup sering memikirkan sekolah dan masa depan. Coba perhatikan kembali apa yang membuat kedua hal tersebut terasa penting bagimu."
+
+Bukan:
+
+"Kamu mengalami gangguan kecemasan."
+
+---
+
+# 15. Safety & Psychological Boundaries
+
+Produk harus memiliki batas penggunaan yang jelas.
+
+## Sistem tidak boleh:
+
+- memberikan diagnosis medis/psikologis;
+- menyatakan bahwa seseorang pasti mengalami gangguan tertentu;
+- menggantikan psikolog atau tenaga profesional;
+- menggunakan hasil sederhana untuk mengambil keputusan berisiko tinggi terhadap siswa.
+
+## Sistem harus:
+
+- menjelaskan bahwa workbook adalah media refleksi dan edukasi;
+- menyediakan informasi bantuan saat pengguna membutuhkan dukungan;
+- menggunakan bahasa non-judgmental;
+- menghindari hasil yang memberi label negatif kepada pengguna;
+- memiliki mekanisme eskalasi/manual review jika produk kelak menggunakan screening formal.
+
+Jika ingin memasukkan screening psikologis yang tervalidasi, instrumen dan interpretasinya harus ditentukan bersama profesional yang kompeten dan sesuai dengan izin penggunaan instrumen tersebut.
+
+---
+
+# 16. Privacy & Data Protection
+
+Karena data dapat mencakup refleksi pribadi remaja, privasi menjadi requirement utama.
+
+## Prinsip
+
+1. Data seminimal mungkin.
+2. Hak akses berbasis role.
+3. Encryption in transit melalui HTTPS.
+4. Password/PIN tidak disimpan sebagai plaintext.
+5. Jangan mengekspos student ID sensitif melalui URL jika tidak perlu.
+6. Batasi query data sesuai role.
+7. Audit aktivitas administratif.
+8. Tentukan retensi data.
+9. Sediakan kebijakan privasi yang mudah dipahami.
+10. Untuk implementasi nyata di sekolah, tentukan mekanisme persetujuan dan tata kelola data yang sesuai dengan konteks dan regulasi yang berlaku.
+
+## Data separation
+
+Identitas pengguna sebaiknya dipisahkan secara logis dari data respons sejauh desain produk memungkinkan.
+
+Contoh:
+
+StudentProfile
+- internal_id
+- display_name
+- class
+- created_at
+
+Response
+- id
+- student_id
+- question_id
+- answer_value
+- created_at
+
+---
+
+# 17. Database Requirements
+
+Database menggunakan PostgreSQL melalui Supabase.
+
+## Core tables
+
+### users
+- id
+- role_id
+- auth_identifier
+- status
+- created_at
+- updated_at
+
+### student_profiles
+- id
+- user_id
+- display_name
+- class_name
+- school_name, jika diperlukan
+- avatar_id, optional
+- created_at
+- updated_at
+
+### roles
+- id
+- name
+
+Contoh role:
+- student
+- psychologist
+- counselor
+- admin
+
+### workbooks
+- id
+- title
+- description
+- cover_image_url, optional
+- status
+- version
+- created_by
+- created_at
+- updated_at
+
+### sections
+- id
+- workbook_id
+- title
+- description
+- order_index
+
+### questions
+- id
+- section_id
+- type
+- question_text
+- helper_text, optional
+- required
+- order_index
+- metadata_json, optional
+
+### question_options
+- id
+- question_id
+- label
+- value
+- icon, optional
+- order_index
+
+### sessions
+- id
+- student_id
+- workbook_id
+- started_at
+- last_activity_at
+- completed_at
+- status
+
+### responses
+- id
+- session_id
+- student_id
+- question_id
+- answer_text, optional
+- answer_json, optional
+- created_at
+- updated_at
+
+### progress
+- id
+- session_id
+- current_section_id
+- current_question_id
+- completed_questions
+- total_questions
+- percentage
+- updated_at
+
+### pin_credentials / auth records
+Jika menggunakan sistem autentikasi eksternal, kredensial dikelola oleh provider auth. Jangan menyimpan PIN plaintext di tabel aplikasi.
+
+### audit_logs
+- id
+- actor_user_id
+- action
+- target_type
+- target_id
+- metadata_json
+- created_at
+
+---
+
+# 18. Suggested Database Relationship
+
+```text
+User
+ ├── Role
+ └── StudentProfile
+       │
+       └── Session
+             │
+             ├── Workbook
+             │     └── Section
+             │           └── Question
+             │                └── QuestionOption
+             │
+             ├── Response
+             └── Progress
+```
+
+Psikolog/admin dapat mengelola Workbook dan Question sesuai permission.
+
+---
+
+# 19. Tech Stack
+
+## Frontend + Backend
+
+**Next.js + TypeScript**
+
+Next.js dipakai sebagai full-stack web framework sehingga frontend dan backend aplikasi dapat berada dalam satu project.
+
+## UI
+
+- Tailwind CSS
+- shadcn/ui
+- responsive design
+
+## Server-side application
+
+- Next.js Server Actions untuk operasi internal yang sesuai;
+- Next.js Route Handlers untuk endpoint yang memang diperlukan;
+- server-side validation;
+- authorization sebelum akses database.
+
+## ORM
+
+**Prisma**
+
+Digunakan untuk memodelkan dan mengakses database PostgreSQL secara terstruktur.
+
+## Database
+
+**Supabase PostgreSQL**
+
+## Authentication
+
+Bisa menggunakan Supabase Auth atau sistem auth yang compatible dengan kebutuhan identitas aplikasi. Untuk MVP, implementasi autentikasi harus tetap memastikan PIN tidak disimpan dalam bentuk plaintext.
+
+## Deployment
+
+**Vercel** untuk deployment Next.js.
+
+## Repository
+
+**GitHub**.
+
+## Optional
+
+- Zod untuk validation schema;
+- Recharts untuk dashboard agregat;
+- Supabase Storage untuk asset;
+- Sentry atau layanan monitoring lain jika dibutuhkan pada fase lanjutan.
+
+---
+
+# 20. System Architecture
+
+```text
+                    CLIENT
+                      │
+                      ▼
+                 VERCEL / NEXT.JS
+          ┌───────────┴────────────┐
+          │                        │
+       UI Layer              Server Layer
+     React + Tailwind      Actions / Routes
+          │                        │
+          └───────────┬────────────┘
+                      │
+               Validation/Auth
+                      │
+                    Prisma
+                      │
+                      ▼
+                 SUPABASE
+                      │
+                PostgreSQL DB
+```
+
+Tidak diperlukan Express.js backend terpisah pada MVP.
+
+---
+
+# 21. Main User Flows
+
+## 21.1 First-time user
+
+```text
+Landing Page
+   ↓
+Mulai
+   ↓
+Pilih nama panggilan
+   ↓
+Buat PIN 4 digit
+   ↓
+Account/Profile created
+   ↓
+Dashboard
+   ↓
+Pilih booklet
+   ↓
+Mulai
+   ↓
+Jawab pertanyaan
+   ↓
+Autosave
+   ↓
+Next
+```
+
+## 21.2 Returning user
+
+```text
+Landing/Login
+   ↓
+Nama panggilan
+   ↓
+PIN
+   ↓
+Verify
+   ↓
+Dashboard
+   ↓
+Lanjutkan progress
+```
+
+## 21.3 Admin creates workbook
+
+```text
+Admin Login
+   ↓
+Workbook Management
+   ↓
+Create Workbook
+   ↓
+Create Sections
+   ↓
+Create Questions
+   ↓
+Add Options
+   ↓
+Publish
+   ↓
+Workbook available to students
+```
+
+## 21.4 Student completes workbook
+
+```text
+Workbook
+   ↓
+Section 1
+   ↓
+Questions
+   ↓
+Section 2
+   ↓
+...
+   ↓
+Final Reflection
+   ↓
+Completed
+   ↓
+Personal Summary
+```
+
+---
+
+# 22. Functional Requirements
+
+## Authentication
+
+**FR-AUTH-01** Sistem harus memungkinkan pengguna remaja membuat identitas dengan nama panggilan.
+
+**FR-AUTH-02** Sistem harus memungkinkan pengguna menetapkan PIN 4 digit.
+
+**FR-AUTH-03** Sistem harus dapat memvalidasi nama panggilan dan PIN.
+
+**FR-AUTH-04** Sistem tidak boleh menyimpan PIN dalam plaintext.
+
+**FR-AUTH-05** Sistem harus menyediakan logout.
+
+**FR-AUTH-06** Sistem harus memiliki mekanisme reset PIN melalui admin/pendamping yang berwenang.
+
+## Workbook
+
+**FR-WB-01** Sistem harus menampilkan daftar booklet yang tersedia.
+
+**FR-WB-02** Sistem harus menampilkan detail booklet.
+
+**FR-WB-03** Sistem harus menampilkan section secara berurutan.
+
+**FR-WB-04** Sistem harus menampilkan pertanyaan berdasarkan tipe yang sesuai.
+
+**FR-WB-05** Sistem harus menyimpan jawaban pengguna.
+
+**FR-WB-06** Sistem harus dapat melanjutkan sesi dari progress terakhir.
+
+**FR-WB-07** Sistem harus menghitung progress pengguna.
+
+**FR-WB-08** Sistem harus menandai booklet yang sudah selesai.
+
+## Admin
+
+**FR-ADMIN-01** Admin dapat membuat booklet.
+
+**FR-ADMIN-02** Admin dapat mengedit booklet.
+
+**FR-ADMIN-03** Admin dapat membuat section.
+
+**FR-ADMIN-04** Admin dapat membuat, mengedit, menghapus, dan mengurutkan pertanyaan.
+
+**FR-ADMIN-05** Admin dapat menentukan tipe pertanyaan.
+
+**FR-ADMIN-06** Admin dapat mengelola opsi jawaban.
+
+**FR-ADMIN-07** Admin dapat publish/unpublish booklet.
+
+## Monitoring
+
+**FR-MON-01** Psikolog/pendamping yang berwenang dapat melihat progress peserta.
+
+**FR-MON-02** Akses respons harus dibatasi berdasarkan permission.
+
+**FR-MON-03** Sistem dapat menampilkan statistik agregat untuk kebutuhan evaluasi program.
+
+---
+
+# 23. Non-Functional Requirements
+
+## Performance
+
+- halaman utama harus cepat dibuka;
+- navigasi antar pertanyaan harus terasa instan;
+- autosave tidak boleh mengganggu pengalaman pengguna;
+- query database harus dibatasi sesuai kebutuhan halaman.
+
+## Availability
+
+MVP menggunakan deployment serverless sehingga tidak memerlukan VPS khusus.
+
+## Security
+
+- HTTPS;
+- authentication;
+- authorization;
+- secure session management;
+- validation input;
+- protection terhadap brute-force;
+- server-side authorization;
+- database policies yang sesuai;
+- audit log untuk tindakan administratif penting.
+
+## Accessibility
+
+- font cukup besar;
+- kontras memadai;
+- tombol mudah ditekan di smartphone;
+- tidak mengandalkan warna saja untuk menyampaikan informasi;
+- navigasi keyboard bila relevan.
+
+## Responsiveness
+
+Prioritas:
+
+1. Smartphone
+2. Tablet
+3. Desktop
+
+---
+
+# 24. UI/UX Guidelines
+
+## Visual style
+
+Arah visual:
+
+- modern;
+- tenang;
+- hangat;
+- tidak terlalu klinis;
+- tidak terlalu kekanak-kanakan;
+- cocok untuk remaja;
+- banyak ruang kosong;
+- ilustrasi ringan;
+- penggunaan emoji secara moderat.
+
+## Tone of voice
+
+Bahasa harus:
+
+- natural;
+- suportif;
+- tidak menghakimi;
+- menggunakan "kamu";
+- tidak terlalu akademis;
+- tidak menggurui.
+
+Contoh:
+
+"Apa yang akhir-akhir ini paling sering memenuhi pikiranmu?"
+
+lebih baik daripada:
+
+"Identifikasikan stressor psikososial utama yang Anda alami."
+
+---
+
+# 25. Dashboard Remaja
+
+Dashboard minimal menampilkan:
+
+- sapaan menggunakan nama panggilan;
+- progress booklet terakhir;
+- daftar booklet;
+- tombol lanjutkan;
+- ringkasan refleksi yang telah selesai;
+- akses pengaturan;
+- logout.
+
+Contoh:
+
+```text
+Halo, Adit 👋
+
+Lanjutkan refleksimu
+[ 60% ] ██████░░░░
+
+[ Lanjutkan ]
+
+Booklet
+[ Kenali Diriku ]
+[ Perasaanku ]
+[ Hubunganku ]
+```
+
+---
+
+# 26. Admin/Psikolog Dashboard
+
+Komponen yang disarankan:
+
+- jumlah peserta;
+- jumlah booklet aktif;
+- completion rate;
+- progress peserta;
+- daftar booklet;
+- statistik respons agregat;
+- fitur pencarian peserta;
+- reset PIN;
+- akses respons berdasarkan permission.
+
+Data sensitif tidak boleh ditampilkan secara default jika tidak diperlukan.
+
+---
+
+# 27. Error Handling
+
+Sistem harus menampilkan pesan yang mudah dipahami.
+
+Contoh:
+
+**PIN salah:**
+"PIN yang kamu masukkan belum sesuai. Coba lagi."
+
+**Koneksi bermasalah saat menyimpan:**
+"Jawabanmu belum berhasil disimpan. Periksa koneksi internet dan coba lagi."
+
+**Session expired:**
+"Sesi kamu telah berakhir. Silakan masuk kembali."
+
+Tidak menampilkan stack trace atau detail teknis kepada pengguna.
+
+---
+
+# 28. Analytics
+
+MVP dapat mencatat event non-sensitif seperti:
+
+- workbook_started;
+- workbook_completed;
+- section_completed;
+- login_success;
+- login_failed;
+- pin_reset;
+- session_resumed.
+
+Hindari memasukkan isi jawaban pribadi ke analytics pihak ketiga secara default.
+
+---
+
+# 29. Reporting
+
+Dashboard dapat menampilkan statistik agregat seperti:
+
+- jumlah siswa yang memulai booklet;
+- jumlah siswa yang menyelesaikan booklet;
+- rata-rata completion rate;
+- distribusi pilihan jawaban untuk pertanyaan non-sensitive sesuai kebutuhan;
+- jumlah sesi aktif.
+
+Laporan harus memperhatikan risiko identifikasi ulang, terutama jika jumlah peserta kecil.
+
+---
+
+# 30. MVP Scope
+
+MVP wajib memiliki:
+
+1. Landing page.
+2. Login dengan nama panggilan + PIN.
+3. Dashboard remaja.
+4. Satu booklet utama.
+5. Multiple section.
+6. Multiple question type.
+7. Autosave response.
+8. Progress tracking.
+9. Resume session.
+10. Personal reflection summary sederhana.
+11. Admin login.
+12. CRUD booklet.
+13. CRUD section.
+14. CRUD question.
+15. Reset PIN oleh admin.
+16. PostgreSQL Supabase.
+17. Next.js full-stack.
+18. Deployment ke Vercel.
+
+---
+
+# 31. Post-MVP Features
+
+Fitur fase berikutnya:
+
+- lebih banyak booklet;
+- mood journal harian;
+- reminder;
+- streak refleksi;
+- progress history;
+- dashboard psikolog lebih lengkap;
+- export laporan;
+- aggregate analytics;
+- multilingual content;
+- PWA;
+- offline draft sementara;
+- notification;
+- content recommendation;
+- integrasi layanan sekolah jika memang diperlukan.
+
+Fitur AI tidak menjadi bagian MVP dan baru dipertimbangkan setelah kebutuhan, keamanan, dan governance data jelas.
+
+---
+
+# 32. Acceptance Criteria MVP
+
+MVP dianggap berhasil jika:
+
+1. Remaja dapat membuat akses dengan nama panggilan dan PIN.
+2. Remaja dapat login kembali dengan identitas tersebut.
+3. PIN tidak tersimpan sebagai plaintext.
+4. Remaja dapat memilih dan membuka booklet.
+5. Pertanyaan dapat tampil sesuai urutan.
+6. Semua respons yang valid tersimpan.
+7. Progress akurat dan dapat dilanjutkan.
+8. Booklet dapat diselesaikan dari awal sampai akhir.
+9. Admin dapat membuat dan mengubah booklet.
+10. Admin dapat membuat dan mengubah pertanyaan.
+11. Admin dapat reset PIN.
+12. Pengguna tidak dapat mengakses data pengguna lain melalui manipulasi client-side.
+13. Website responsif pada smartphone.
+14. Website berhasil dideploy ke Vercel.
+15. Database PostgreSQL berjalan di Supabase.
+
+---
+
+# 33. Development Roadmap
+
+## Phase 0: Product & Content
+
+- finalisasi tujuan booklet;
+- menentukan struktur section;
+- menyusun pertanyaan;
+- review konten oleh pihak yang kompeten di bidang psikologi;
+- menentukan privacy policy dan batas penggunaan.
+
+## Phase 1: Foundation
+
+- setup GitHub;
+- setup Next.js + TypeScript;
+- setup Tailwind + shadcn/ui;
+- setup Supabase;
+- setup Prisma;
+- setup environment variables;
+- database migration.
+
+## Phase 2: Authentication
+
+- student onboarding;
+- name + PIN;
+- secure PIN handling;
+- session management;
+- logout;
+- admin authentication;
+- reset PIN.
+
+## Phase 3: Workbook Engine
+
+- workbook listing;
+- sections;
+- question renderer;
+- response storage;
+- autosave;
+- progress;
+- resume session.
+
+## Phase 4: Admin
+
+- CRUD workbook;
+- CRUD section;
+- CRUD question;
+- question options;
+- publish/unpublish.
+
+## Phase 5: Reflection & Dashboard
+
+- personal summary;
+- student dashboard;
+- admin/psychologist dashboard;
+- aggregate statistics.
+
+## Phase 6: Testing & Deployment
+
+- functional testing;
+- authorization testing;
+- responsive testing;
+- security review;
+- UAT;
+- deployment to Vercel;
+- production configuration.
+
+---
+
+# 34. Suggested Repository Structure
+
+```text
+kenali-dirimu/
+├── app/
+│   ├── (public)/
+│   ├── login/
+│   ├── dashboard/
+│   ├── workbook/
+│   ├── admin/
+│   ├── api/
+│   └── actions/
+├── components/
+│   ├── ui/
+│   ├── workbook/
+│   ├── auth/
+│   └── dashboard/
+├── lib/
+│   ├── prisma.ts
+│   ├── auth.ts
+│   ├── validations.ts
+│   └── permissions.ts
+├── prisma/
+│   ├── schema.prisma
+│   └── migrations/
+├── public/
+├── types/
+├── tests/
+├── .env.local
+├── package.json
+└── README.md
+```
+
+---
+
+# 35. Environment Variables
+
+Contoh kebutuhan konfigurasi:
+
+```env
+DATABASE_URL="..."
+DIRECT_URL="..."
+NEXT_PUBLIC_SUPABASE_URL="..."
+NEXT_PUBLIC_SUPABASE_ANON_KEY="..."
+SUPABASE_SERVICE_ROLE_KEY="..."
+AUTH_SECRET="..."
+```
+
+Secret key hanya digunakan pada server dan tidak boleh diekspos ke browser.
+
+Nilai sebenarnya tidak boleh ditulis ke repository GitHub.
+
+---
+
+# 36. Deployment
+
+## Development
+
+```text
+Developer Laptop
+      ↓
+Next.js localhost
+      ↓
+Supabase Development DB
+```
+
+## Production
+
+```text
+GitHub
+   ↓
+Vercel
+   ↓
+Next.js application
+   ↓
+Supabase PostgreSQL
+```
+
+Environment variable production harus dipisahkan dari development.
+
+---
+
+# 37. Cost Strategy
+
+MVP dirancang agar dapat dikembangkan dengan free tier layanan yang relevan.
+
+Komponen:
+
+- Next.js: open source
+- GitHub: free repository untuk project pribadi/non-enterprise sesuai ketentuan layanan
+- Vercel: free tier untuk tahap MVP sesuai batas penggunaan
+- Supabase: free tier untuk tahap MVP sesuai batas penggunaan
+- Prisma: open source untuk kebutuhan ORM dasar
+- Tailwind CSS: open source
+- shadcn/ui: open source
+
+Biaya dapat meningkat jika traffic, database, storage, bandwidth, atau kebutuhan operasional melebihi free tier.
+
+---
+
+# 38. Risks & Mitigation
+
+## Risk 1: Data sensitif bocor
+
+Mitigation:
+- authorization server-side;
+- row-level security bila relevan;
+- prinsip least privilege;
+- minimisasi data;
+- logging akses administratif;
+- review keamanan sebelum production.
+
+## Risk 2: Pengguna lupa PIN
+
+Mitigation:
+- PIN 4 digit yang mudah diingat;
+- reset PIN oleh admin/pendamping;
+- instruksi reset yang jelas.
+
+## Risk 3: Website dianggap sebagai alat diagnosis
+
+Mitigation:
+- disclaimer;
+- content review;
+- hindari bahasa diagnosis otomatis;
+- pisahkan screening formal dari reflective workbook.
+
+## Risk 4: Jawaban tidak tersimpan karena koneksi
+
+Mitigation:
+- autosave;
+- retry;
+- indikator save status;
+- draft lokal sementara bila diperlukan.
+
+## Risk 5: Konten kurang relevan bagi remaja
+
+Mitigation:
+- user testing;
+- review bahasa;
+- melibatkan remaja dalam usability testing secara etis dan sesuai persetujuan yang diperlukan.
+
+---
+
+# 39. Open Questions untuk Fase Berikutnya
+
+1. Apakah pengguna remaja berasal dari satu sekolah atau dapat berasal dari banyak sekolah?
+2. Apakah psikolog dapat melihat seluruh jawaban atau hanya respons yang ditandai/diperlukan?
+3. Apakah booklet akan benar-benar digunakan sebagai screening formal atau murni self-reflection?
+4. Apakah identitas nama asli perlu disimpan di sistem atau cukup nama panggilan?
+5. Apakah admin akan membuat akun remaja secara manual atau pengguna membuat akses sendiri?
+6. Apakah diperlukan parent/guardian role?
+7. Apakah perlu consent workflow?
+8. Berapa lama data respons akan disimpan?
+9. Apakah pengguna boleh menghapus data mereka sendiri?
+10. Apakah perlu export laporan untuk psikolog?
+
+Pertanyaan tersebut tidak mengubah arsitektur MVP dasar, tetapi dapat memengaruhi desain final authentication, privacy, dan role management.
+
+---
+
+# 40. Prinsip Produk
+
+Kenali Dirimu harus selalu mempertahankan prinsip berikut:
+
+**Simple**
+
+Remaja dapat mulai tanpa proses teknis yang rumit.
+
+**Private**
+
+Jawaban reflektif diperlakukan sebagai data pribadi.
+
+**Supportive**
+
+Bahasa membantu pengguna memahami diri tanpa menghakimi.
+
+**Non-diagnostic**
+
+Produk bukan pengganti psikolog dan tidak memberikan diagnosis otomatis.
+
+**Reflective**
+
+Fokus utama adalah membantu pengguna berhenti sejenak, berpikir, menulis, dan mengenali dirinya.
+
+**Scalable**
+
+Konten dapat berkembang dari satu booklet menjadi banyak modul tanpa perlu mengubah fondasi sistem.
+
+---
+
+# 41. Product Summary
+
+Produk akhir yang dibangun adalah website mobile-first bernama **Kenali Dirimu**, sebuah interactive psychological workbook untuk remaja.
+
+Remaja masuk menggunakan **nama panggilan + PIN 4 digit**, kemudian mengakses booklet yang terdiri dari beberapa bagian reflektif. Setiap jawaban tersimpan, progress dapat dilanjutkan, dan pengguna dapat memperoleh ringkasan refleksi pribadi yang bersifat edukatif serta non-diagnostik.
+
+Dari sisi teknis, aplikasi menggunakan **Next.js sebagai frontend sekaligus backend**, **Supabase PostgreSQL sebagai database**, **Prisma sebagai ORM**, dan **Vercel sebagai deployment platform**. Tidak diperlukan backend Express/NestJS terpisah untuk MVP.
+
+Arsitektur produk dirancang dengan perhatian khusus pada **privacy, authorization, data minimization, keamanan PIN, dan batas penggunaan psikologis** karena target pengguna merupakan remaja.
+
+---
+
+# END OF PRD

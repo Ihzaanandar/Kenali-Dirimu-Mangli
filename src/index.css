@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body, #root {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #f3f2ee;
+    color: #262626;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+}
+
+/* Handwritten Typography Classes */
+.font-handwriting {
+  font-family: 'Patrick Hand', 'Caveat', cursive, sans-serif;
+}
+
+.font-heading-hand {
+  font-family: 'Caveat', 'Kalam', cursive, sans-serif;
+}
+
+.font-kalam {
+  font-family: 'Kalam', 'Patrick Hand', cursive, sans-serif;
+}
+
+/* Paper Texture & Notebook Ruled Lines */
+.paper-bg {
+  background-color: #f8f7f3;
+  background-image: radial-gradient(#e5e3dc 0.75px, transparent 0.75px);
+  background-size: 16px 16px;
+}
+
+.ruled-notebook {
+  background-color: #fcfbf9;
+  background-image: repeating-linear-gradient(
+    transparent,
+    transparent 31px,
+    #e2e0d8 31px,
+    #e2e0d8 32px
+  );
+  line-height: 32px;
+}
+
+/* Masking Tape Decoration Effect */
+.tape-strip {
+  background-color: rgba(245, 240, 225, 0.75);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px dashed rgba(200, 190, 170, 0.5);
+  backdrop-filter: blur(2px);
+}
+
+/* Charcoal Pencil Brush Effect for Buttons */
+.btn-charcoal {
+  background-color: #1c1c1e;
+  color: #ffffff;
+  border-radius: 9999px;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.btn-charcoal:hover {
+  background-color: #333336;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+}
+
+/* Glassmorphism Utilities */
+.glass-card {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(230, 226, 216, 0.8);
+}
+
+.glass-nav {
+  background: rgba(248, 247, 243, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(226, 222, 210, 0.8);
+}
+
+.gradient-text {
+  color: #1c1c1e;
+}
+
+.card-hover-effect {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover-effect:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px -8px rgba(0, 0, 0, 0.08);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f3f2ee;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d4d0c5;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b5b0a3;
+}
